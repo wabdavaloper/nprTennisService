@@ -4,6 +4,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
+// import swagger
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
+
 const matchesController = require('./controllers/matches');
 
 const app = express();
@@ -11,6 +15,23 @@ const app = express();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+
+// configure swagger
+const swaggerOptions = {
+    failOnErrors: false, // W1hether or not to throw when parsing errors. Defaults to false.
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'nprTennisService',
+            version: '1.0.0',
+        },
+    },
+    apis: ['./controllers/*.js']
+};
+
+const swaggerDocs = swaggerJSDoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/api/matches/', matchesController);
 
