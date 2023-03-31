@@ -6,7 +6,7 @@ describe('Тест бизнес логики взаимодействия с м�
 
 	it('Положительная проверка. Заполнение победителя и проигравшего', () => {
 		const realEquals = matchesLogic.createNewMatches('Denis', 'Dima');
-		assert.equal(realEquals, 'Created new match winner: Denis, losser: Dima');
+		assert.equal(realEquals, 'Created new match winner: Denis, score: 105, losser: Dima, score: 97.75');
 	});
 
 	it('Негативная проверка. Заполнение победителя без проигравшего', () => {

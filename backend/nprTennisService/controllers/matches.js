@@ -29,9 +29,8 @@ const matches = express();
  *         description: Успешное создание матча
  */
 matches.post('/', (req, res) => {
-	if (matchLogic.createNewMatches(req.body.winnerNickname, req.body.losserNickname)) {
-		res.json({msg: `Created new match winner: ${req.body.winnerNickname}, losser: ${req.body.losserNickname}`}).status(200);
-	}
+	const result = matchLogic.createNewMatches(req.body.winnerNickname, req.body.losserNickname);
+	res.json({msg: result}).status(200);
 });
 
 module.exports = matches;

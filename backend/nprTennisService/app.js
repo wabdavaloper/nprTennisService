@@ -9,6 +9,7 @@ const swaggerJSDoc = require('swagger-jsdoc');
 const swaggerUi = require('swagger-ui-express');
 
 const matchesController = require('./controllers/matches');
+const playersController = require('./controllers/players');
 
 const app = express();
 
@@ -34,6 +35,7 @@ const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use('/api/matches/', matchesController);
+app.use('/api/players/', playersController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
