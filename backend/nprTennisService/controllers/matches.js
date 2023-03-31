@@ -1,4 +1,6 @@
 const express = require('express');
+const Log = require('../log/Log');
+const log = new Log('./log.txt', 'DEBUG');
 const matchLogic = require('../logic/matches/matchesLogic')
 
 const matches = express();
@@ -29,6 +31,7 @@ const matches = express();
  *         description: Успешное создание матча
  */
 matches.post('/', (req, res) => {
+	log.writeLog(req.method, req.path, req.body);
 	const result = matchLogic.createNewMatches(req.body.winnerNickname.toString(), req.body.losserNickname.toString());
 	res.json({msg: result}).status(200);
 });

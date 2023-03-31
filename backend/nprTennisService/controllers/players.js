@@ -1,5 +1,6 @@
 const express = require('express');
-
+const Log = require('../log/Log');
+const log = new Log('./log.txt', 'DEBUG');
 const players = express();
 
 /**
@@ -26,7 +27,7 @@ players.get('/all', (req, res) => {
                 lastName: 'asdasdsdasdasd'
             }
         ];
-
+    log.writeLog(req.method, req.path, req.body);
 	res.json(msg).status(200);
 });
 
