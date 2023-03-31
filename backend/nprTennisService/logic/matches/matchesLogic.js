@@ -1,4 +1,7 @@
+const validator = require('validator');
+
 // бесполезная функция. пока что. тут запрос к БД будет
+// https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666338130_51-mykaleidoscope-ru-p-ulibka-negra-instagram-57.jpg
 const getScoresWinnersLossers = (winnerNickname, losserNickname) => {
 	return {
 		defaultWinnerScore: 50,
@@ -30,6 +33,10 @@ const createNewMatches = (winnerNickname, losserNickname) => {
 	else if ( losserNickname === undefined ) {
 		console.log('Необходимо заполнить никнейм проигравшего участника');
 		return 'Необходимо заполнить никнейм проигравшего участника';	
+	}
+	else if (validator.isNumeric(losserNickname) || validator.isNumeric(winnerNickname)) {
+		console.log('Необходимо ввести корректные данные');
+		return 'Необходимо ввести корректные данные';
 	}
 	else {
 		defaultWinnerScore += defaultWinnerScore + (100 - (defaultWinnerScore - defaultLosserScore)) / 20;

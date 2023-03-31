@@ -13,7 +13,7 @@
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^4.6.2"
+    "swagger-ui-express": "^4.6.2",
+    "validator": "^13.9.0"
   }
 }
-

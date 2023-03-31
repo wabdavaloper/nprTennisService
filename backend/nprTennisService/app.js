@@ -14,8 +14,8 @@ const playersController = require('./controllers/players');
 const app = express();
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json({ limit: '64kb' }));
+app.use(express.urlencoded({ extended: false, limit: '64kb'}));
 
 
 // configure swagger

@@ -29,7 +29,7 @@ const matches = express();
  *         description: Успешное создание матча
  */
 matches.post('/', (req, res) => {
-	const result = matchLogic.createNewMatches(req.body.winnerNickname, req.body.losserNickname);
+	const result = matchLogic.createNewMatches(req.body.winnerNickname.toString(), req.body.losserNickname.toString());
 	res.json({msg: result}).status(200);
 });
 
