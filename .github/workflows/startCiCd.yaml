@@ -20,6 +20,6 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: install npm modules
-        run: cd backend/nprTennisService & npm install
+        run: npm install
       - name: testing project
         run: npm test
