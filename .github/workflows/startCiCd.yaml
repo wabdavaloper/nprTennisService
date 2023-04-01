@@ -20,4 +20,3 @@ jobs:
         run: npm install
       - name: testing project
         run: npm test
-      
