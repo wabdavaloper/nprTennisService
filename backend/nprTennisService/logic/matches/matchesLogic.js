@@ -28,7 +28,7 @@ const createNewMatches = (winnerNickname, losserNickname) => {
 	} 
 	else if ( winnerNickname === undefined ) {
 		console.log('Необходимо заполнить никнейм победившего участника');
-		return 'Необходимо заполнить никнейм победившего участника223232';	
+		return 'Необходимо заполнить никнейм победившего участника2232312';	
 	}
 	else if ( losserNickname === undefined ) {
 		console.log('Необходимо заполнить никнейм проигравшего участника');
