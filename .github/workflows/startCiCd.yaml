@@ -19,7 +19,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+      - name: install mocha global
+        run: npm install -g mocha
       - name: install npm modules
-        run: [ npm install -g mocha, npm install ]
+        run: npm install
       - name: testing project
         run: npm test
