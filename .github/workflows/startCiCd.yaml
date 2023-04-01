@@ -1,5 +1,8 @@
 name: CI/CD project
 on: 
+  workflow_dispatch: # Putting here is also fine!!
+  release:
+    types: [created]
   push:
     branches: [ master ]
   pull_request:
