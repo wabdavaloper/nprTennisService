@@ -10,7 +10,7 @@ const getScoresWinnersLossers = (winnerNickname, losserNickname) => {
 }
 
 /**
-* Расчет очков по результатам матча и создание записи в БД о матче
+* Расчет очков по результату матча и создание записи в БД о матче
 * @param {string} winnerNickname - Никнейм победителя матча
 * @param {string} losserNickname - Никнейм проигравшего в матче
 * @returns {string} Возвращает строку с ошибкой и рекомендацией, либо строку с участниками и их расчитанные очки
