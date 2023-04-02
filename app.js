@@ -18,7 +18,7 @@ app.use(express.json({ limit: '64kb' }));
 app.use(express.urlencoded({ extended: false, limit: '64kb'}));
 
 app.use('/', express.static(__dirname + '/frontend'))
-// configure swagger
+// configure swag
 const swaggerOptions = {
     failOnErrors: false, // W1hether or not to throw when parsing errors. Defaults to false.
     definition: {
