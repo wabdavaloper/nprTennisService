@@ -3,11 +3,13 @@
 <head>
  <title>WSTR</title>
     <link rel="stylesheet" href="1.css">
+    	<script src="jquery-3.6.4.js"></script>
 	<script src="script1.js"></script>
-	<script src="jquery-3.6.4.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
+    
+
      <header>
   <h1>WORLD TENNIS SPUTNIK RATING</h1>
  </header>
@@ -16,80 +18,63 @@
  
     <div id='spicok'>
  <ul>
-  <li>Petr ivnanov 0.00</li>
-  <li>Petr ivnanov 0.00</li>
-  <li>Petr ivnanov 0.00</li>
-  <li>Petr ivnanov 0.00</li>
-  <li>Petr ivnanov 0.00</li>
-  <li>Petr ivnanov 0.00</li>
-
- 
+  <li>Petr inanov 0.00</li>
+  <li>Petr inanov 0.00</li>
+  <li>Petr inanov 0.00</li>
+  <li>Petr inanov 0.00</li>
+  <li>Petr inanov 0.00</li>
+  <li>Petr inanov 0.00</li>
  </ul>
  
 </div>
 
 
 
-<div id='inp2'>
-  <form style="display: table; border-collapse: collapse;">
-    <div style="display: table-row;">
-      <div style="display: table-cell;">
-        <label for="player1-name">Игрок1:</label>
-      </div>
-      <div style="display: table-cell;">
-        <input type="text" id="player1-name" name="player1-name">
-      </div>
-    </div>
+<div  class="contain">
 
-    <div style="display: table-row;">
-      <div style="display: table-cell;">
-        <label for="result1">Результат</label>
-      </div>
-      <div style="display: table-cell;">
-        <select id="result1" name="result1">
-          <option value="win">Победа</option>
-          <option value="loss">Поражение</option>
-        </select>
-      </div>
-    </div>
+  <div class="box">
 
 
-
-    <div style="display: table-row;">
-      <div style="display: table-cell;">
-        <label for="player2-name">Игрок2:</label>
-      </div>
-      <div style="display: table-cell;">
-        <input type="text" id="player2-name" name="player2-name">
-      </div>
-    </div>
-
-    <div style="display: table-row;">
-      <div style="display: table-cell;">
-        <label for="result2">Результат:</label>
-      </div>
-      <div style="display: table-cell;">
+    <div class="form">
+      <h3>Результаты матча</h3>
+      <form id="match-form" action="" >
+        <p>
+          <label for="">Игрок1</label>
+          <input type="text">
+        </p>
+          
+        <p>
+          <label for="">Игрок2</label>
+          <input type="text">
+        </p>
+          
+    <p>
         <select id="result2" name="result2">
-          <option value="win">Победа</option>
-          <option value="loss">Поражение</option>
-        </select>
-      </div>
+        <option value="win">Победа</option>
+        <option value="lose">Поражение</option>
+        </select><br><br>
+    </p>
+          
+          
+    <p>
+      <select id="result2" name="result2">
+      <option value="win">Победа</option>
+      <option value="lose">Поражение</option>
+    </select><br><br>
+    </p>
+       
+        <p>
+          <button>Отправить</button>
+        </p>
+      </form>
     </div>
-
-
-
-    <div style="display: table-row;">
-      <div style="display: table-cell;"></div>
-      <div style="display: table-cell;">
-        <input type="submit" value="Отправить результат" id='inp1'>
-      </div>
-    </div>
-	
-	
-	
-
-  </form>
+      
+  </div>
 </div>
+    
+  
+	
+
 
     
     <footer>
