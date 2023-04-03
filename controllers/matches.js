@@ -32,8 +32,14 @@ const matches = express();
  */
 matches.post('/', (req, res) => {
 	log.writeLog(req.method, req.path, req.body);
-	const result = matchLogic.createNewMatches(req.body.winnerNickname.toString(), req.body.losserNickname.toString());
-	res.json({msg: result}).status(200);
+	try {
+		const result = matchLogic.createNewMatches(req.body.winnerNickname.toString(), req.body.losserNickname.toString());
+		res.json({msg: result}).status(200);
+	  } catch (err) {
+	  
+		res.json({msg: err}).status(401)
+	  
+	  }
 });
 
 module.exports = matches;
