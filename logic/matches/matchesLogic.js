@@ -1,48 +1,65 @@
 const validator = require('validator');
+const { Client } = require('pg');
+const AuthDbData = require('../../db/connect_db.json');
+const client = new Client(AuthDbData);
+const db = require('../../db/db');
+
+client.connect();
 
 // бесполезная функция. пока что. тут запрос к БД будет
 // https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666338130_51-mykaleidoscope-ru-p-ulibka-negra-instagram-57.jpg
-const getScoresWinnersLossers = (winnerNickname, losserNickname) => {
+const getScoresWinnersLossers = async (winnerId, losserId) => {
+
+	const res = await client.query(db.getScoresWinnerAndLossers(winnerId, losserId));
+	console.log(res.rows[0].score, res.rows[1].score)
 	return {
-		defaultWinnerScore: 50,
-		defaultLosserScore: 50
+		defaultWinnerScore: 
+			res.rows[0].score + (100 - (res.rows[0].score - res.rows[1].score)) / 10,
+		defaultLosserScore: 
+			res.rows[1].score - (100 - (res.rows[0].score - res.rows[1].score)) / 20
 	}
+}
+
+const insertMatch = async (winnerId, winnerScore, losserId, losserScore) => {
+	await client.query(db.calculateScoreForWinner(winnerId, winnerScore));
+	await client.query(db.calculateScoreForLosser(losserId, losserScore));
+	await client.query(db.createMatch(winnerId, losserId));
 }
 
 /**
 * Расчет очков по результату матча и создание записи в БД о матче
-* @param {string} winnerNickname - Никнейм победителя матча
-* @param {string} losserNickname - Никнейм проигравшего в матче
+* @param {string} winnerId - Айди победителя матча
+* @param {string} losserId - Айди проигравшего в матче
 * @returns {string} Возвращает строку с ошибкой и рекомендацией, либо строку с участниками и их расчитанные очки
 * Рейтинг для выигравшего игрока (РВ) определяется по формуле:
-* РВ = РТВ + (100 – (РТВ – РТП)) / 10
+* РВ = РТВ + (100 – (РТВ – РТП)) / 10. 50 + (100 - (50 - 50)) / 10 = 60
 * Рейтинг для проигравшего игрока (РП) определяется по формуле:
-* РП = РТП - (100 – (РТВ – РТП)) / 20
+* РП = РТП - (100 – (РТВ – РТП)) / 20. 50 - (100 - (50 - 50)) / 20 = 45
 * где РТВ - текущий рейтинг выигравшего игрока, РТП - текущий рейтинг проигравшего игрока
 */
-const createNewMatches = (winnerNickname, losserNickname) => {
-	let { defaultWinnerScore , defaultLosserScore } = getScoresWinnersLossers(winnerNickname, losserNickname);
-	if (winnerNickname === undefined && losserNickname === undefined) {
+const createNewMatches = async (winnerId, losserId) => {
+	
+	if (winnerId === undefined && losserId === undefined) {
 		console.log('Необходимо заполнить никнейм победившего участника и проигравшего');
 		return 'Необходимо заполнить никнейм победившего участника и проигравшего';
 	} 
-	else if ( winnerNickname === undefined ) {
+	else if ( winnerId === undefined ) {
 		console.log('Необходимо заполнить никнейм победившего участника');
 		return 'Необходимо заполнить никнейм победившего участника';	
 	}
-	else if ( losserNickname === undefined ) {
+	else if ( losserId === undefined ) {
 		console.log('Необходимо заполнить никнейм проигравшего участника');
 		return 'Необходимо заполнить никнейм проигравшего участника';	
 	}
-	else if (validator.isNumeric(losserNickname) || validator.isNumeric(winnerNickname)) {
-		console.log('Необходимо ввести корректные данные');
-		return 'Необходимо ввести корректные данные';
-	}
 	else {
-		defaultWinnerScore += defaultWinnerScore + (100 - (defaultWinnerScore - defaultLosserScore)) / 20;
-		defaultLosserScore += defaultLosserScore - (100 - (defaultWinnerScore - defaultLosserScore)) / 20;
-		console.log(`Created new match winner: ${winnerNickname}, score: ${defaultWinnerScore}, losser: ${losserNickname}, score: ${defaultLosserScore}`);
-		return `Created new match winner: ${winnerNickname}, score: ${defaultWinnerScore}, losser: ${losserNickname}, score: ${defaultLosserScore}`;
+		let { defaultWinnerScore , defaultLosserScore } = await getScoresWinnersLossers(winnerId, losserId);
+		//defaultWinnerScore += defaultWinnerScore + (100 - (defaultWinnerScore - defaultLosserScore)) / 20;
+		//defaultLosserScore += defaultLosserScore - (100 - (defaultWinnerScore - defaultLosserScore)) / 20;
+		await insertMatch(winnerId, defaultWinnerScore, losserId, defaultLosserScore);
+		
+		console.log(`Created new match winner: ${winnerId}, score: ${defaultWinnerScore}, losser: ${losserId}, score: ${defaultLosserScore}`);
+		
+		return `Created new match winner: ${winnerId}, score: ${defaultWinnerScore}, losser: ${losserId}, score: ${defaultLosserScore}`;
 	}
 
 }

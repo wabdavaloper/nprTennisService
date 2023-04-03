@@ -16,28 +16,27 @@ const matches = express();
  *         schema:
  *           type: object
  *           required:
- *             - winnerNickname
- *             - losserNickname
+ *             - winnerId
+ *             - losserId
  *           properties:
- *             winnerNickname:
+ *             winnerId:
  *               type: string
- *               description: Никнейм победителя
- *             losserNickname:
+ *               description: Айди победителя
+ *             losserId:
  *               type: string
- *               description: Никнейм проигравшего
+ *               description: Айди проигравшего
  *   description: Создание с результатами нового матча между двумя игроками
  *   responses:
  *       200:
  *         description: Успешное создание матча
  */
-matches.post('/', (req, res) => {
+matches.post('/', async (req, res) => {
 	log.writeLog(req.method, req.path, req.body);
 	try {
-		const result = matchLogic.createNewMatches(req.body.winnerNickname.toString(), req.body.losserNickname.toString());
-		res.json({msg: result}).status(200);
+		res.json({msg: await matchLogic.createNewMatches(req.body.winnerId.toString(), req.body.losserId.toString())}).status(200);
 	  } catch (err) {
 	  
-		res.json({msg: err}).status(401)
+		res.json({msg: err}).status(401);
 	  
 	  }
 });
