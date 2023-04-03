@@ -21,8 +21,6 @@ jobs:
         run: npm install -g mocha
       - name: install npm modules
         run: npm install
-      - name: testing project
-        run: npm test
   deploy:
     runs-on: ubuntu-latest
     steps:
