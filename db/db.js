@@ -8,19 +8,19 @@ const getScoresWinnerAndLossers = (winnerId, losserId) => {
     return `
     SELECT p.score
     FROM PLAYERS p
-    WHERE ID = '${winnerId}'
+    WHERE ID = ${winnerId}
     UNION ALL
     SELECT l.score
     FROM PLAYERS l
-    WHERE ID = '${losserId}';
+    WHERE ID = ${losserId};
     `  
 }
 
 const calculateScoreForWinner = (winnerId, winnerScore) => {
     return `
         UPDATE PLAYERS
-        SET score = '${winnerScore}'
-        WHERE ID = '${winnerId}'
+        SET score = ${winnerScore}
+        WHERE ID = ${winnerId}
         ;
     `
 }
@@ -28,8 +28,8 @@ const calculateScoreForWinner = (winnerId, winnerScore) => {
 const calculateScoreForLosser = (losserId, losserScore) => {
     return `
         UPDATE PLAYERS
-        SET score = '${losserScore}'
-        WHERE ID = '${losserId}'
+        SET score = ${losserScore}
+        WHERE ID = ${losserId}
         ;
     `
 }
@@ -37,7 +37,7 @@ const calculateScoreForLosser = (losserId, losserScore) => {
 const createMatch = (winnerId, losserId) => {
     return `
         INSERT INTO MATCH ( winner_id, losser_id )
-        VALUES ( '${winnerId}', '${losserId}' )
+        VALUES ( ${winnerId}, ${losserId} )
     `
 }
 

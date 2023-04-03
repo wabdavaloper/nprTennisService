@@ -33,7 +33,7 @@ const matches = express();
 matches.post('/', async (req, res) => {
 	log.writeLog(req.method, req.path, req.body);
 	try {
-		res.json({msg: await matchLogic.createNewMatches(req.body.winnerId.toString(), req.body.losserId.toString())}).status(200);
+		res.json({msg: await matchLogic.createNewMatches(req.body.winnerId, req.body.losserId)}).status(200);
 	  } catch (err) {
 	  
 		res.json({msg: err}).status(401);
