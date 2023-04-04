@@ -1,80 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>WSTR</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>WSTR</title>
     <link rel="stylesheet" href="1.css">
-	<script src="jquery-3.6.4.js"></script>
-  <script src="script1.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="jquery-3.6.4.js"></script>
+
 </head>
 <body>
-    
-
-     <header>
-  <h1>WORLD TENNIS SPUTNIK RATING</h1>
- </header>
-    
- <!--h1>Reting igrokov</h1-->
- 
-    <div id='spicok'>
- <ul>
-  <li>Petr inanov 0.00</li>
-  <li>Petr inanov 0.00</li>
-  <li>Petr inanov 0.00</li>
-  <li>Petr inanov 0.00</li>
-  <li>Petr inanov 0.00</li>
-  <li>Petr inanov 0.00</li>
- </ul>
- 
-</div>
-
-  <div class="box">
-
-
-    <div class="form">
-      <h3>Результаты матча</h3>
-      <form id="match-form" action="api/matches" method="POST" >
-        <p>
-          <label for="">Игрок1</label>
-          <input type="text">
-        </p>
-          
-        <p>
-          <label for="">Игрок2</label>
-          <input type="text">
-        </p>
-          
-    <p>
-        <select id="result2" name="result2">
-        <option value="win">Победа</option>
-        <option value="lose">Поражение</option>
-        </select><br><br>
-    </p>
-          
-          
-    <p>
-      <select id="result2" name="result2">
-      <option value="win">Победа</option>
-      <option value="lose">Поражение</option>
-    </select><br><br>
-    </p>
-       
-        <p>
-          <button>Отправить</button>
-        </p>
-      </form>
+    <header>
+        <h1>WORLD TENNIS SPUTNIK RATING</h1>
+    </header>
+    <div class="tab">
+        <h1>Список участников чемпионата</h1>
+        <button id="sumb1">Иван Иванов</button>
+        <button id='sumb2'>Иван Петров</button>
+        <button>Иван Иванов</button>
+        <button>Иван Иванов</button>
+        <button>Иван Иванов</button>
+        <button>Иван Иванов</button>
     </div>
-      
-  </div>
-</div>
-    
-  
-	
-
-    
+    <div id='forma'>
+        <h2>Ввод результатов матча</h2>
+        <form>
+         <div class="sek">
+            <label for="player1">Игрок 1</label>
+             <span id="player1" class="player-inputs"></span>
+            <br>
+            <label for="score1">Результат:</label>
+            <input type="text" id="score1" name="score1">
+            <br>
+        </div>
+        <div class="sek"> 
+            <label for="player2">Игрок 2</label>
+             <span id="player2" class="player-inputs"></span>
+            <br>
+            <label for="score2">Результат:</label>
+            <input type="text" id="score2" name="score2">
+            <br>
+        </div>   
+            <div class="knop">
+            <button type="submit" class="but">Добавить результат</button>
+              <button id="clear">Clear</button>
+            </div>
+        </form>
+    </div>
     <footer>
-  <p>&copy; 2023 WORLD TENNIS SPUTNIK RATING by htp. All rights reserved.</p>
- </footer>
- 
+        <p>&copy; 2023 WORLD TENNIS SPUTNIK RATING by htp. All rights reserved.</p>
+    </footer>
+    <script>
+       const button1 = document.getElementById("sumb1");
+      const input1 = document.getElementById("player1");
+      const button2 = document.getElementById("sumb2");
+      const input2 = document.getElementById("player2");
+      const clearButton = document.getElementById("clear");
+      const resultSpan = document.createElement('span');
+      resultSpan.id = 'result-span';
+      document.body.appendChild(resultSpan);
+
+      button1.addEventListener("click", function() {
+        input1.textContent = button1.textContent;
+      });
+
+      button2.addEventListener("click", function() {
+        input2.textContent = button2.textContent;
+      });
+
+      clearButton.addEventListener("click", function() {
+        input1.textContent = "";
+        input2.textContent = "";
+      });
+
+      const form = document.querySelector('form');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const score1 = parseInt(document.getElementById('score1').value);
+        const score2 = parseInt(document.getElementById('score2').value);
+        const player1Name = input1.textContent;
+        const player2Name = input2.textContent;
+        let resultText = `${player1Name} (${score1}) - (${score2}) ${player2Name}`;
+        resultSpan.textContent = resultText;
+      });
+    </script>
 </body>
 </html>
