@@ -43,8 +43,8 @@ const createMatch = (winnerId, losserId) => {
 
 const allPlayersInfo = () => {
     return `
-        SELECT *
-        FROM PLAYERS
+        SELECT pl.id, pl.first_name, pl.second_name, pl.nickname, pl.score
+        FROM players pl
         ORDER BY SCORE DESC;
     `
 }
