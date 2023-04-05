@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors')
 
 // import swagger
 const swaggerJSDoc = require('swagger-jsdoc');
@@ -30,6 +31,8 @@ const swaggerOptions = {
     },
     apis: ['./controllers/*.js']
 };
+
+app.use(cors())
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
