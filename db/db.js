@@ -37,8 +37,16 @@ const calculateScoreForLosser = (losserId, losserScore) => {
 const createMatch = (winnerId, losserId) => {
     return `
         INSERT INTO MATCH ( winner_id, losser_id )
-        VALUES ( ${winnerId}, ${losserId} )
+        VALUES ( ${winnerId}, ${losserId} );
     `
 }
 
-module.exports = { getScoresWinnerAndLossers, createMatch, calculateScoreForWinner, calculateScoreForLosser }
+const allPlayersInfo = () => {
+    return `
+        SELECT *
+        FROM PLAYERS
+        ORDER BY SCORE DESC;
+    `
+}
+
+module.exports = { getScoresWinnerAndLossers, createMatch, calculateScoreForWinner, calculateScoreForLosser, allPlayersInfo }

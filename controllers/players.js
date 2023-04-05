@@ -2,6 +2,7 @@ const express = require('express');
 const Log = require('../log/Log');
 const log = new Log('./log.txt', 'DEBUG');
 const players = express();
+const playerLogic = require('../logic/players/playersLogic');
 
 /**
  * @swagger
@@ -13,22 +14,16 @@ const players = express();
  *          200:
  *              description: Список всех игроков
  */
-players.get('/all', (req, res) => {
-    const msg = 
-        [
-            {
-                nickName: 'asdsad',
-                firstName: 'asdasd',
-                lastName: 'asdasdsdasdasd'
-            },
-            {
-                nickName: 'asdsad',
-                firstName: 'asdasd',
-                lastName: 'asdasdsdasdasd'
-            }
-        ];
+players.get('/all', async (req, res) => {
     log.writeLog(req.method, req.path, req.body);
-	res.json(msg).status(200);
+
+    try {
+        console.log('success');
+        res.json({msg: await playerLogic.getAllPlayersInfo()}).status(200);
+    } catch {
+        res.json({msg: err}).status(401);
+    }
+
 });
 
 module.exports = players;
