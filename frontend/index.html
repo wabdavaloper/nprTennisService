@@ -7,10 +7,15 @@
     <script src="jquery-3.6.4.js"></script>
 
 </head>
-<body>
+<body onload="printBtn();">
+
     <header>
         <h1>WORLD TENNIS SPUTNIK RATING</h1>
     </header>
+    <div id="array">
+     <h1>Список участников чемпионата</h1>
+    </div>
+<!--
     <div class="tab">
         <h1>Список участников чемпионата</h1>
         <button id="sumb1">Иван Иванов</button>
@@ -19,7 +24,7 @@
         <button>Иван Иванов</button>
         <button>Иван Иванов</button>
         <button>Иван Иванов</button>
-    </div>
+    </div>-->
     <div id='forma'>
         <h2>Ввод результатов матча</h2>
         <form>
@@ -49,7 +54,49 @@
         <p>&copy; 2023 WORLD TENNIS SPUTNIK RATING by htp. All rights reserved.</p>
     </footer>
     <script>
-       const button1 = document.getElementById("sumb1");
+             
+         async function printBtn() {
+    const players = await GetPlayers();
+    const arrayDiv = document.getElementById('array');
+    for (let i = 0; i < players.msg.length; i++) {
+      const btn = document.createElement('button');
+      btn.innerHTML = players.msg[i].first_name + ' ' + players.msg[i].second_name + ' ' + players.msg[i].score ;
+      arrayDiv.appendChild(btn);
+        
+btn.classList.add('tab');
+
+        
+    }
+  }
+        
+
+        
+        async function GetPlayers () {
+        let url = 'http://45.94.122.254:3000/api/players/all';
+let response = await fetch(url,{
+    
+  method: 'GET', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *client
+    
+    
+});
+
+let players = await response.json(); // читаем ответ в формате JSON
+
+console.log(players);
+           console.log(response);
+            return players
+        }
+       
+      const button1 = document.getElementById("sumb1");
       const input1 = document.getElementById("player1");
       const button2 = document.getElementById("sumb2");
       const input2 = document.getElementById("player2");
@@ -66,21 +113,28 @@
         input2.textContent = button2.textContent;
       });
 
-      clearButton.addEventListener("click", function() {
-        input1.value = "";
-        input2.value = "";
+      clearButton.addEventListener("click", async function() {
+        input1.valueOf = "";0
+        input2.valueOf = "";
+              var playerss = await GetPlayers();
+        
+        console.log(playerss.msg[0]); //получение массива игроков playerss.msg[0].first_name.score
+      
+   
       });
 
       const form = document.querySelector('form');
       form.addEventListener('submit', function(e) {
         e.preventDefault();
-        const score1 = parseInt(document.getElementById('score1').value);
-        const score2 = parseInt(document.getElementById('score2').value);
+        const score1 = Number(document.getElementById('score1').value);
+        const score2 = Number(document.getElementById('score2').value);
         const player1Name = input1.textContent;
         const player2Name = input2.textContent;
         let resultText = `${player1Name} (${score1}) - (${score2}) ${player2Name}`;
         resultSpan.textContent = resultText;
       });
+        
+     
     </script>
 </body>
 </html>
