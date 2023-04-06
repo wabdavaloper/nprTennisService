@@ -3,9 +3,10 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>WSTR</title>
+   
     <link rel="stylesheet" href="1.css">
     <script src="jquery-3.6.4.js"></script>
-
+ 
 </head>
 <body onload="printBtn();">
 
@@ -13,18 +14,9 @@
         <h1>WORLD TENNIS SPUTNIK RATING</h1>
     </header>
     <div id="array">
-     <h1>Список участников чемпионата</h1>
+
     </div>
-<!--
-    <div class="tab">
-        <h1>Список участников чемпионата</h1>
-        <button id="sumb1">Иван Иванов</button>
-        <button id='sumb2'>Иван Петров</button>
-        <button>Иван Иванов</button>
-        <button>Иван Иванов</button>
-        <button>Иван Иванов</button>
-        <button>Иван Иванов</button>
-    </div>-->
+
     <div id='forma'>
         <h2>Ввод результатов матча</h2>
         <form>
@@ -44,34 +36,37 @@
             <input type="text" id="score2" name="score2">
             <br>
         </div>   
-            <div class="knop">
-            <button type="submit" class="but">Добавить результат</button>
-              <button id="clear">Clear</button>
-            </div>
+                        
+            <div class="knop1"><button type="submit" class="but">Добавить результат</button></div>
+            <div class="knop2"><button id="clear">Clear</button></div>
+                
+        
         </form>
     </div>
     <footer>
-        <p>&copy; 2023 WORLD TENNIS SPUTNIK RATING by htp. All rights reserved.</p>
+        <p>&copy; 2023 WORLD TENNIS SPUTNIK RATING by ЧТП. All rights reserved.</p>
     </footer>
+    
     <script>
-             
-         async function printBtn() {
+      
+async function printBtn() {
     const players = await GetPlayers();
     const arrayDiv = document.getElementById('array');
+    const colors = ['#ffd700', '#c0c0c0', '#cd7f32']; // задаем цвета для первых трех элементов массива
     for (let i = 0; i < players.msg.length; i++) {
-      const btn = document.createElement('button');
-      btn.innerHTML = players.msg[i].first_name + ' ' + players.msg[i].second_name + ' ' + players.msg[i].score ;
-      arrayDiv.appendChild(btn);
-        
-btn.classList.add('tab');
-
-        
+        const btn = document.createElement('button');
+        btn.innerHTML = players.msg[i].first_name + ' ' + players.msg[i].second_name + ' ' + players.msg[i].score;
+        if (i < 3) { // добавляем разный цвет для первых трех элементов массива
+            btn.style.backgroundColor = colors[i];
+            btn.classList.add('color1');
+        } else {
+            btn.classList.add('tab');
+        }
+        arrayDiv.appendChild(btn);
     }
-  }
-        
-
-        
-        async function GetPlayers () {
+} 
+    
+     async function GetPlayers () {
         let url = 'http://45.94.122.254:3000/api/players/all';
 let response = await fetch(url,{
     
