@@ -1,29 +1,23 @@
 const validator = require('validator');
-const { Client } = require('pg');
+const { Pool } = require('pg');
 const AuthDbData = require('../../db/connect_db.json');
-const client = new Client(AuthDbData);
+const pool = new Pool(AuthDbData);
 const db = require('../../db/db');
 
-client.connect();
+pool.connect();
 
-// бесполезная функция. пока что. тут запрос к БД будет
-// https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666338130_51-mykaleidoscope-ru-p-ulibka-negra-instagram-57.jpg
 const getScoresWinnersLossers = async (winnerId, losserId) => {
-
-	const res = await client.query(db.getScoresWinnerAndLossers(winnerId, losserId));
-	console.log(res.rows[0].score, res.rows[1].score)
-	return {
-		defaultWinnerScore: 
-			res.rows[0].score + (100 - (res.rows[0].score - res.rows[1].score)) / 10,
-		defaultLosserScore: 
-			res.rows[1].score - (100 - (res.rows[0].score - res.rows[1].score)) / 20
-	}
+  const res = await pool.query(db.getScoresWinnerAndLossers(winnerId, losserId));
+  console.log(res.rows[0].score, res.rows[1].score)
+  const defaultWinnerScore = res.rows[0].score + (100 - (res.rows[0].score - res.rows[1].score)) / 10;
+  const defaultLosserScore = res.rows[1].score - (100 - (res.rows[0].score - res.rows[1].score)) / 20;
+  return { defaultWinnerScore, defaultLosserScore };
 }
 
 const insertMatch = async (winnerId, winnerScore, losserId, losserScore) => {
-	await client.query(db.calculateScoreForWinner(winnerId, winnerScore));
-	await client.query(db.calculateScoreForLosser(losserId, losserScore));
-	await client.query(db.createMatch(winnerId, losserId));
+  await pool.query(db.calculateScoreForWinner(winnerId, winnerScore));
+  await pool.query(db.calculateScoreForLosser(losserId, losserScore));
+  await pool.query(db.createMatch(winnerId, losserId));
 }
 
 /**
@@ -38,30 +32,39 @@ const insertMatch = async (winnerId, winnerScore, losserId, losserScore) => {
 * где РТВ - текущий рейтинг выигравшего игрока, РТП - текущий рейтинг проигравшего игрока
 */
 const createNewMatches = async (winnerId, losserId) => {
-	
-	if (winnerId === undefined && losserId === undefined) {
-		console.log('Необходимо заполнить никнейм победившего участника и проигравшего');
-		return 'Необходимо заполнить никнейм победившего участника и проигравшего';
-	} 
-	else if ( winnerId === undefined ) {
-		console.log('Необходимо заполнить никнейм победившего участника');
-		return 'Необходимо заполнить никнейм победившего участника';	
-	}
-	else if ( losserId === undefined ) {
-		console.log('Необходимо заполнить никнейм проигравшего участника');
-		return 'Необходимо заполнить никнейм проигравшего участника';	
-	}
-	else {
-		let { defaultWinnerScore , defaultLosserScore } = await getScoresWinnersLossers(winnerId, losserId);
-		//defaultWinnerScore += defaultWinnerScore + (100 - (defaultWinnerScore - defaultLosserScore)) / 20;
-		//defaultLosserScore += defaultLosserScore - (100 - (defaultWinnerScore - defaultLosserScore)) / 20;
-		await insertMatch(winnerId, defaultWinnerScore, losserId, defaultLosserScore);
-		
-		console.log(`Created new match winner: ${winnerId}, score: ${defaultWinnerScore}, losser: ${losserId}, score: ${defaultLosserScore}`);
-		
-		return `Created new match winner: ${winnerId}, score: ${defaultWinnerScore}, losser: ${losserId}, score: ${defaultLosserScore}`;
-	}
 
+
+    if (!winnerId || !losserId) {
+        console.log('Необходимо заполнить никнейм победившего участника и проигравшего');
+        return 'Необходимо заполнить никнейм победившего участника и проигравшего';
+    } else if (!winnerId) {
+        console.log('Необходимо заполнить никнейм победившего участника');
+        return 'Необходимо заполнить никнейм победившего участника';
+    } else if (!losserId) {
+        console.log('Необходимо заполнить никнейм проигравшего участника');
+        return 'Необходимо заполнить никнейм проигравшего участника';
+    } else if (isNaN(parseInt(winnerId)) || isNaN(parseInt(losserId))) {
+        console.log('Некорректный запрос');
+        return 'Некорректный запрос';
+    } else {
+        try {
+            await pool.query('BEGIN');
+            const {
+                defaultWinnerScore,
+                defaultLosserScore
+            } = await getScoresWinnersLossers(winnerId, losserId);
+            await insertMatch(winnerId, defaultWinnerScore, losserId, defaultLosserScore);
+            console.log(`Created new match winner: ${winnerId}, score: ${defaultWinnerScore}, losser: ${losserId}, score: ${defaultLosserScore}`);
+            await pool.query('COMMIT');
+            return `Created new match winner: ${winnerId}, score: ${defaultWinnerScore}, losser: ${losserId}, score: ${defaultLosserScore}`;
+        } catch (err) {
+            console.log(err)
+            await pool.query('ROLLBACK');
+            return false;
+        } finally {
+            await pool.end();
+        }
+    }
 }
 
-module.exports = { createNewMatches }
+module.exports = { createNewMatches };

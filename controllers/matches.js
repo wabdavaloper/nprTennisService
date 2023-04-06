@@ -29,16 +29,25 @@ const matches = express();
  *   responses:
  *       200:
  *         description: Успешное создание матча
+ *       400:
+ *         description: Некорректный запрос
+ *       500:
+ *         description: Внутренняя ошибка сервера
  */
 matches.post('/', async (req, res) => {
-	log.writeLog(req.method, req.path, req.body);
-	try {
-		res.json({msg: await matchLogic.createNewMatches(req.body.winnerId, req.body.losserId)}).status(200);
-	  } catch (err) {
-	  
-		res.json({msg: err}).status(401);
-	  
-	  }
+  log.writeLog(req.method, req.path, req.body);
+  try {
+    const result = await matchLogic.createNewMatches(req.body.winnerId, req.body.losserId);
+	console.log(result);
+    if (!result || result.length !== 2 || result.name === 'error') {
+		res.status(400).json({msg: 'Некорректный запрос'})
+    } else {
+		res.status(200).json({msg: result});
+	}
+  } catch (err) {
+    log.writeLog('ERROR', req.path, err.message);
+    res.status(500).json({msg: 'Internal server error'});
+  }
 });
 
 module.exports = matches;
