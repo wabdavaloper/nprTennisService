@@ -5,53 +5,42 @@ body {
    height: 100vh;
    margin: 0;
    padding: 0;
-   font-family: sans-serif;
-   background: #ffc107 ;
+   font-family: "Andale Mono", monospace;
+
+background: #FDC830;
+background: -webkit-linear-gradient(to right, #F37335, #FDC830); 
+background: linear-gradient(to right, #F37335, #FDC830); 
+background-size:500% 500%; 
+  -webkit-animation:ServiceAnimation 10s ease infinite;
+  -moz-animation:ServiceAnimation 10s ease infinite;
+  -o-animation:ServiceAnimation 10s ease infinite;
+  animation:ServiceAnimation 10s ease infinite; /* Время смены цвета */
 }
 
-main {
-    flex-grow: 1;
-}
-
-html,
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
 
 header {
   background-color: black;
   color: #fff;
-  padding: 20px;
+  padding: 0px;
   text-align: center;
   position: fixed; /* добавляем фиксированную позицию */
   top: 0; /* устанавливаем свойство top в 0 */
   left: 0; /* устанавливаем свойство left в 0 */
   right: 0; /* устанавливаем свойство right в 0 */
   height: 90px;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    
 }
 
-footer {
-  background-color: black;
-  color: #fff;
-  padding: 10px;
-  height: 50px;
-  text-align: center;
-  position: fixed; /* добавляем фиксированную позицию */
-  bottom: 0; /* устанавливаем свойство bottom в 0 */
-  left: 0; /* устанавливаем свойство left в 0 */
-  right: 0; /* устанавливаем свойство right в 0 */
-} 
 
 .tab {
+    font-family: "Andale Mono", monospace;
     display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-right: 10px;
   margin-bottom: 10px;
-  background-color: #FF4F00;
+  background-color: black;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -60,7 +49,8 @@ footer {
   font-size: 16px;
   border-radius: 20px;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out;   
+    
 }
 
 .tab button {
@@ -78,6 +68,8 @@ footer {
     padding: 0.5em 1em;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
+    
+    
 }
     button:hover {
     transform: scale(1.05); 
@@ -93,30 +85,52 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 150px; /* добавляем отступ сверху */
-    background-color: #FF4F00;
-    border-radius: 20px;
+    margin-bottom: 15%;
+    margin-left: 600px;
     box-shadow: 8px 8px 6px rgba(0,0,0,0.3);
     color: white;
     padding: 30px;
-    
+    position: fixed;
+    width: 27%;
+    height: 35%;
+ 
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 35px 45px rgba(0,0,0,.6);
+  border-radius: 10px;
+
+  
+  
 }
 
 
-.forma-label {
-    font-size: 20px;
-    margin-bottom: 10px;
+label {
+    margin-top: 10px; /* добавляем отступ сверху */
 }
 
-.forma-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 10px;
+input[type="number"] {
+    padding: 5px;
+	background-color: #eee;
+	vertical-align: top;
+	outline: none;
+	padding: 0;
+	height: 40px;
+	line-height: 40px;    
+	text-indent: 10px;
+	display: inline-block;
+	width: 100%;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	font-size: 14px;
+	border-radius: 3px;
+
+} 
+ 
+input[type="number"]:focus {
+	outline: 2px so
 }
 
-.forma-submit {
+.but {
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -124,51 +138,47 @@ footer {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+   
+        width: 155px;
 }
 
-.forma-submit:hover {
-    background-color: #3e8e41;
-}
-
-
-
-.form {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 80%;
-    margin-top: 50px; /* добавляем отступ сверху */
-}
-label {
-    margin-top: 10px; /* добавляем отступ сверху */
-}
-
-.but {
-    margin-top: 10px; /* добавляем отступ сверху */
-}
-
-label {
-    display: block;
-    margin-bottom: 10px;
-     font-weight: bold;
-}
-
-input[type="text"] {
-    padding: 5px;
-    font-size: 16px;
-}
-
-.but {
-    padding: 5px 10px;
-    background-color: #4CAF50;
-    border-radius: 5px;
+.clear {
+    width: 155px;
+     background-color: red;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
-    margin-top: 10px; /* добавляем отступ сверху */
-    color: #fff; /* задаем цвет текста */
-    border: none; /* убираем границы */
-    padding: 10px 20px; /* добавляем отступы внутри кнопки */
+    transition: background-color 0.3s ease-in-out;
+    
+    
 }
+
+.knopki {
+    
+   margin-right: 20px;
+    
+}
+
+
+  .knop1, .knop2 {
+
+      display: inline-block; /*располагаем блоки в ряд по горизонтали*/
+
+}
+
+
+.knop1 {
+    margin-left: 9px;
+    
+}
+
+.knop2 {
+    margin-left: 106px;
+    
+}
+
 
 .player-inputs {
     padding: 5px;
@@ -192,46 +202,57 @@ h1 {
         padding: 10px 20px;
         border-radius: 5px;
         cursor: pointer;
+          margin-top: 20px;
       }
 #array {
-    
-margin-right: 20%;
+    margin-top: 27%;
+margin-right: 50%;
+ 
+    overflow: auto;
+  white-space: nowrap; /* чтобы кнопки не переносились на новую строку */
+ 
     
 }
 
 .sek {
     
     display:inline-block;
-
+    flex-direction: column;
+  align-items: center;
+    	position: relative;
+   margin-left: 5px;
+    margin-top: 25px;
 }
 
-.knop1, {
-
-justify-content: center;
- flex-direction: column;
- display:flex;
-}
-.knop2 {
-
-}
-        
+.vs {
     
-    
+     display:inline-block;
 
-.but:hover {
-    cursor: pointer; /* меняем курсор при наведении на кнопку */
-    background-color: #34495e; /* меняем цвет фона при наведении */
+
 }
 
-input[type="text"] {
+
+.vs h1 {
+    font-size: 35px;
+    color: white;
+}
+
+
+
+
+
+input[type="number"] {
     padding: 5px; /* добавляем отступы внутри поля ввода */
     border-radius: 5px; /* добавляем скругление углов */
     border: none; /* убираем границы */
+       font-size: 41px; 
+    text-align: center
 }
 
-input[type="text"]:focus {
+input[type="number"]:focus {
     outline: none; /* убираем рамку при фокусе на поле ввода */
     box-shadow: 0 0 5px #2c3e50; /* добавляем тень при фокусе */
+ 
 }
 
 #result-span {
@@ -253,9 +274,25 @@ input[type="text"]:focus {
 
 #score1,
 #score2 {
-    width: 100px; /* задаем ширину поля результатов */
+    width: 90px; 
+    height: 90px;
+    margin-left: 29px;
 }
 
+.span {  
+  display: inline-block;
+  padding: 12px 12px;
+  border-radius: 30px;
+  color: red;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.2);
+  height: 15px;
+width: 130px;    
+    margin-top: 15%;
+    margin-right: 20%;
+}
 
 .color1 {
     display: flex;
@@ -278,4 +315,28 @@ input[type="text"]:focus {
 
 .color1:hover {
     transform: scale(1.05);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button 
+{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* not necessary*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+input[type="number"]:hover,
+input[type="number"]:focus {
+  border: 2px solid #000000;
 }
