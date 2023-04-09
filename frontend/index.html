@@ -18,53 +18,93 @@
     </div>
 
     <div id='forma'>
-        <h2>Ввод результатов матча</h2>
+        <h2 class="h1">Результат матча</h2>
         <form>
          <div class="sek">
-            <label for="player1">Игрок 1</label>
-             <span id="player1" class="player-inputs"></span>
+             <input type="number" id="score1" name="score1" min="1" max="2" required/>
             <br>
-            <label for="score1">Результат:</label>
-            <input type="text" id="score1" name="score1">
+            <div class="span">
+              <span id="player1" class="player-inputs"></span>
+            </div>
             <br>
         </div>
+            <div class="vs">
+            <h1>VS</h1>
+            </div>
         <div class="sek"> 
-            <label for="player2">Игрок 2</label>
-             <span id="player2" class="player-inputs"></span>
+            
+            <input type="number" id="score2" name="score2" min="1" max="2" required / >
             <br>
-            <label for="score2">Результат:</label>
-            <input type="text" id="score2" name="score2">
+            <div class="span">
+            <span id="player2" class="player-inputs"></span>
+            </div>
             <br>
         </div>   
-                        
-            <div class="knop1"><button type="submit" class="but">Добавить результат</button></div>
-            <div class="knop2"><button id="clear">Clear</button></div>
-                
+               <div class="knopki"> 
+            <div class="knop1"><button type="submit" class="but">Зафиксировать</button></div>
+            <div class="knop2"><button class="clear">Отмена</button></div>
+                </div>  
         
         </form>
     </div>
-    <footer>
+    <!--footer>
         <p>&copy; 2023 WORLD TENNIS SPUTNIK RATING by ЧТП. All rights reserved.</p>
-    </footer>
+    </footer-->
     
     <script>
-      
+        
+        
+        this.input.value = this.value.replace('/[^1-2]/g', ' ');
+
 async function printBtn() {
+    
+    
+
     const players = await GetPlayers();
     const arrayDiv = document.getElementById('array');
     const colors = ['#ffd700', '#c0c0c0', '#cd7f32']; // задаем цвета для первых трех элементов массива
+    
     for (let i = 0; i < players.msg.length; i++) {
         const btn = document.createElement('button');
-        btn.innerHTML = players.msg[i].first_name + ' ' + players.msg[i].second_name + ' ' + players.msg[i].score;
+        btn.innerHTML = '#' + (i+1) + ' ' + players.msg[i].first_name + ' ' + players.msg[i].second_name + ' ' + players.msg[i].score; // добавляем порядковый номер участника
         if (i < 3) { // добавляем разный цвет для первых трех элементов массива
             btn.style.backgroundColor = colors[i];
             btn.classList.add('color1');
+            btn.style.color = '#000';
+            btn.style.fontWeight = 'bold';
         } else {
             btn.classList.add('tab');
         }
         arrayDiv.appendChild(btn);
     }
-} 
+}
+        
+        
+    async function validateInput() {
+  const score1 = document.getElementById('score1');
+  const score2 = document.getElementById('score2');
+        document.addEventListener('DOMContentLoaded', () => {
+  validateInput();
+});
+  
+  score1.addEventListener('input', () => {
+    if (score1.value === '2') {
+      score2.setAttribute('max', '1');
+    } else {
+      score2.removeAttribute('max');
+    }
+  });
+  
+  score2.addEventListener('input', () => {
+    if (score2.value === '2') {
+      score1.setAttribute('max', '1');
+    } else {
+      score1.removeAttribute('max');
+    }
+  });
+}
+
+validateInput();
     
      async function GetPlayers () {
         let url = 'http://45.94.122.254:3000/api/players/all';
@@ -90,46 +130,11 @@ console.log(players);
            console.log(response);
             return players
         }
-       
-      const button1 = document.getElementById("sumb1");
-      const input1 = document.getElementById("player1");
-      const button2 = document.getElementById("sumb2");
-      const input2 = document.getElementById("player2");
-      const clearButton = document.getElementById("clear");
-      const resultSpan = document.createElement('span');
-      resultSpan.id = 'result-span';
-      document.body.appendChild(resultSpan);
-
-      button1.addEventListener("click", function() {
-        input1.textContent = button1.textContent;
-      });
-
-      button2.addEventListener("click", function() {
-        input2.textContent = button2.textContent;
-      });
-
-      clearButton.addEventListener("click", async function() {
-        input1.valueOf = "";0
-        input2.valueOf = "";
-              var playerss = await GetPlayers();
         
-        console.log(playerss.msg[0]); //получение массива игроков playerss.msg[0].first_name.score
-      
-   
-      });
-
-      const form = document.querySelector('form');
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const score1 = Number(document.getElementById('score1').value);
-        const score2 = Number(document.getElementById('score2').value);
-        const player1Name = input1.textContent;
-        const player2Name = input2.textContent;
-        let resultText = `${player1Name} (${score1}) - (${score2}) ${player2Name}`;
-        resultSpan.textContent = resultText;
-      });
         
-     
+        
+        
+
     </script>
 </body>
 </html>
