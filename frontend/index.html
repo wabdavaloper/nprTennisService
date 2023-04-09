@@ -1,140 +1,124 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>WSTR</title>
-   
-    <link rel="stylesheet" href="1.css">
-    <script src="jquery-3.6.4.js"></script>
- 
-</head>
-<body onload="printBtn();">
-
-    <header>
-        <h1>WORLD TENNIS SPUTNIK RATING</h1>
-    </header>
-    <div id="array">
-
-    </div>
-
-    <div id='forma'>
-        <h2 class="h1">Результат матча</h2>
-        <form>
-         <div class="sek">
-             <input type="number" id="score1" name="score1" min="1" max="2" required/>
-            <br>
-            <div class="span">
-              <span id="player1" class="player-inputs"></span>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <title>WSTR</title>
+      <link rel="stylesheet" href="1.css">
+      <script src="jquery-3.6.4.js"></script>
+   </head>
+   <body onload="printBtn();">
+      <header>
+         <h1>WORLD TENNIS SPUTNIK RATING</h1>
+      </header>
+      <div id="array">
+      </div>
+      <div id='forma'>
+         <h2 class="h1">Результат матча</h2>
+         <form>
+            <div class="sek">
+               <input type="number" id="score1" name="score1" min="1" max="2" required/>
+               <br>
+               <div class="span">
+                  <span id="player1" class="player-inputs"></span>
+               </div>
+               <br>
             </div>
-            <br>
-        </div>
             <div class="vs">
-            <h1>VS</h1>
+               <h1>VS</h1>
             </div>
-        <div class="sek"> 
-            
-            <input type="number" id="score2" name="score2" min="1" max="2" required / >
-            <br>
-            <div class="span">
-            <span id="player2" class="player-inputs"></span>
+            <div class="sek">
+               <input type="number" id="score2" name="score2" min="1" max="2" required / >
+               <br>
+               <div class="span">
+                  <span id="player2" class="player-inputs"></span>
+               </div>
+               <br>
             </div>
-            <br>
-        </div>   
-               <div class="knopki"> 
-            <div class="knop1"><button type="submit" class="but">Зафиксировать</button></div>
-            <div class="knop2"><button class="clear">Отмена</button></div>
-                </div>  
-        
-        </form>
-    </div>
-    <!--footer>
-        <p>&copy; 2023 WORLD TENNIS SPUTNIK RATING by ЧТП. All rights reserved.</p>
-    </footer-->
-    
-    <script>
-        
-        
+            <div class="knopki">
+               <div class="knop1"><button type="submit" class="but">Зафиксировать</button></div>
+               <div class="knop2"><button class="clear">Отмена</button></div>
+            </div>
+         </form>
+      </div>
+      <!--footer>
+         <p>&copy; 2023 WORLD TENNIS SPUTNIK RATING by ЧТП. All rights reserved.</p>
+         </footer-->
+      <script>
         this.input.value = this.value.replace('/[^1-2]/g', ' ');
 
-async function printBtn() {
-    
-    
+        async function printBtn() {
+            const players = await GetPlayers();
+            const arrayDiv = document.getElementById('array');
+            const colors = ['#ffd700', '#c0c0c0', '#cd7f32']; // задаем цвета для первых трех элементов массива
 
-    const players = await GetPlayers();
-    const arrayDiv = document.getElementById('array');
-    const colors = ['#ffd700', '#c0c0c0', '#cd7f32']; // задаем цвета для первых трех элементов массива
-    
-    for (let i = 0; i < players.msg.length; i++) {
-        const btn = document.createElement('button');
-        btn.innerHTML = '#' + (i+1) + ' ' + players.msg[i].first_name + ' ' + players.msg[i].second_name + ' ' + players.msg[i].score; // добавляем порядковый номер участника
-        if (i < 3) { // добавляем разный цвет для первых трех элементов массива
-            btn.style.backgroundColor = colors[i];
-            btn.classList.add('color1');
-            btn.style.color = '#000';
-            btn.style.fontWeight = 'bold';
-        } else {
-            btn.classList.add('tab');
+            for (let i = 0; i < players.msg.length; i++) {
+                const btn = document.createElement('button');
+                btn.innerHTML = '#' + (i + 1) + ' ' + players.msg[i].first_name + ' ' + players.msg[i].second_name + ' ' + players.msg[i].score; // добавляем порядковый номер участника
+                if (i < 3) { // добавляем разный цвет для первых трех элементов массива
+                    btn.style.backgroundColor = colors[i];
+                    btn.classList.add('color1');
+                    btn.style.color = '#000';
+                    btn.style.fontWeight = 'bold';
+                } else {
+                    btn.classList.add('tab');
+                }
+                arrayDiv.appendChild(btn);
+            }
+            console.log(arrayDiv.style.paddingTop)
+            arrayDiv.style.paddingTop = (64 * players.msg.length + 2) - 750 + 'px';
+            console.log(arrayDiv.style.paddingTop)
         }
-        arrayDiv.appendChild(btn);
-    }
-}
-        
-        
-    async function validateInput() {
-  const score1 = document.getElementById('score1');
-  const score2 = document.getElementById('score2');
-        document.addEventListener('DOMContentLoaded', () => {
-  validateInput();
-});
-  
-  score1.addEventListener('input', () => {
-    if (score1.value === '2') {
-      score2.setAttribute('max', '1');
-    } else {
-      score2.removeAttribute('max');
-    }
-  });
-  
-  score2.addEventListener('input', () => {
-    if (score2.value === '2') {
-      score1.setAttribute('max', '1');
-    } else {
-      score1.removeAttribute('max');
-    }
-  });
-}
 
-validateInput();
-    
-     async function GetPlayers () {
-        let url = 'http://45.94.122.254:3000/api/players/all';
-let response = await fetch(url,{
-    
-  method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    mode: 'cors', // no-cors, *cors, same-origin
-    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-    credentials: 'same-origin', // include, *same-origin, omit
-    headers: {
-      'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    redirect: 'follow', // manual, *follow, error
-    referrerPolicy: 'no-referrer', // no-referrer, *client
-    
-    
-});
+        async function validateInput() {
+            const score1 = document.getElementById('score1');
+            const score2 = document.getElementById('score2');
+            document.addEventListener('DOMContentLoaded', () => {
+                validateInput();
+            });
 
-let players = await response.json(); // читаем ответ в формате JSON
+            score1.addEventListener('input', () => {
+                if (score1.value === '2') {
+                    score2.setAttribute('max', '1');
+                } else {
+                    score2.removeAttribute('max');
+                }
+            });
 
-console.log(players);
-           console.log(response);
+            score2.addEventListener('input', () => {
+                if (score2.value === '2') {
+                    score1.setAttribute('max', '1');
+                } else {
+                    score1.removeAttribute('max');
+                }
+            });
+        }
+
+        validateInput();
+
+        async function GetPlayers() {
+            let url = 'http://45.94.122.254:3000/api/players/all';
+            let response = await fetch(url, {
+
+                method: 'GET', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *client
+
+
+            });
+
+            let players = await response.json(); // читаем ответ в формате JSON
+
+            console.log(players);
+            console.log(response);
             return players
         }
-        
-        
-        
-        
-
-    </script>
-</body>
+      </script>
+   </body>
 </html>
