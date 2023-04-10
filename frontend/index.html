@@ -10,7 +10,7 @@
       <header>
          <h1>WORLD TENNIS SPUTNIK RATING</h1>
       </header>
-      <div id="array">
+      <div id="array" class="array">
       </div>
       <div id='forma'>
          <h2 class="h1">Результат матча</h2>
@@ -72,6 +72,11 @@
             arrayDiv.style.paddingTop = (64 * (players.msg.length - 2) + 2 ) - 750 + 'px';
             console.log(arrayDiv.style.paddingTop)
 
+            const example = document.querySelector('.array');
+
+            document.querySelector('.array').addEventListener('click', event => {
+                console.log(event.target.innerHTML);
+            });
         }
 
 
