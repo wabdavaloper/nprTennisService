@@ -44,7 +44,6 @@
          <p>&copy; 2023 WORLD TENNIS SPUTNIK RATING by ЧТП. All rights reserved.</p>
          </footer-->
       <script>
-        this.input.value = this.value.replace('/[^1-2]/g', ' ');
 
         async function printBtn() {
             const players = await GetPlayers();
@@ -58,6 +57,7 @@
                 btn.setAttribute('IDPlayers', players.msg[i].id);
                 btn.setAttribute('firstName', players.msg[i].first_name);
                 btn.setAttribute('secondName', players.msg[i].second_name);
+                btn.setAttribute('score', players.msg[i].score);
                 if (i < 3) { // добавляем разный цвет для первых трех элементов массива
                     btn.style.backgroundColor = colors[i];
                     btn.classList.add('color1');
@@ -72,14 +72,19 @@
             arrayDiv.style.paddingTop = (64 * (players.msg.length - 2) + 2 ) - 750 + 'px';
             console.log(arrayDiv.style.paddingTop)
 
-            const example = document.querySelector('.array');
 
-            document.querySelector('.array').addEventListener('click', event => {
-                console.log(event.target.innerHTML);
-            });
         }
 
+        const example = document.querySelector('.array');
 
+        document.querySelector('.array').addEventListener('click', event => {
+            console.log(event.target);
+            console.log(event.target.getAttribute('idplayers'));
+            console.log(event.target.getAttribute('firstname'));
+            console.log(event.target.getAttribute('secondname'));
+            console.log(event.target.getAttribute('score'));
+            document.getElementById('player1').innerText = event.target.getAttribute('secondname');
+        });
 
         async function validateInput() {
             const score1 = document.getElementById('score1');
