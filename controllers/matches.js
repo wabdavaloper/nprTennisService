@@ -41,13 +41,13 @@ matches.post('/', async (req, res) => {
     const result = await matchLogic.createNewMatches(req.body.winnerId, req.body.losserId);
 	console.log(result);
     if (!result || result.length !== 2 || result.name === 'error') {
-		res.status(400).json({msg: 'Некорректный запрос'})
+		return res.status(400).json({msg: 'Некорректный запрос'})
     } else {
-		res.status(200).json({msg: result});
+		return res.status(200).json({msg: result});
 	}
   } catch (err) {
     log.writeLog('ERROR', req.path, err.message);
-    res.status(500).json({msg: 'Internal server error'});
+    return res.status(500).json({msg: 'Internal server error'});
   }
 });
 
