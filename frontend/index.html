@@ -54,6 +54,10 @@
             for (let i = 0; i < players.msg.length; i++) {
                 const btn = document.createElement('button');
                 btn.innerHTML = '#' + (i + 1) + ' ' + players.msg[i].first_name + ' ' + players.msg[i].second_name + ' ' + players.msg[i].score; // добавляем порядковый номер участника
+                
+                btn.setAttribute('IDPlayers', players.msg[i].id);
+                btn.setAttribute('firstName', players.msg[i].first_name);
+                btn.setAttribute('secondName', players.msg[i].second_name);
                 if (i < 3) { // добавляем разный цвет для первых трех элементов массива
                     btn.style.backgroundColor = colors[i];
                     btn.classList.add('color1');
@@ -65,9 +69,12 @@
                 arrayDiv.appendChild(btn);
             }
             console.log(arrayDiv.style.paddingTop)
-            arrayDiv.style.paddingTop = (64 * players.msg.length + 2) - 750 + 'px';
+            arrayDiv.style.paddingTop = (64 * (players.msg.length - 2) + 2 ) - 750 + 'px';
             console.log(arrayDiv.style.paddingTop)
+
         }
+
+
 
         async function validateInput() {
             const score1 = document.getElementById('score1');

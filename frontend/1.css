@@ -69,9 +69,18 @@ header {
 button:hover {
   transform: scale(1.05);
 }
-.tab button:hover {
+.tab:hover {
   background-color: #2E8B57;
+  cursor: pointer;
 }
+
+.color1:hover {
+  background-color: !important #2E8B57;
+  cursor: pointer;
+}
+
+
+
 #forma {
   display: flex;
   flex-direction: column;
