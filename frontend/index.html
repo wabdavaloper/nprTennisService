@@ -76,14 +76,21 @@
         }
 
         const example = document.querySelector('.array');
-
+        let isclicked = false;
         document.querySelector('.array').addEventListener('click', event => {
             console.log(event.target);
             console.log(event.target.getAttribute('idplayers'));
             console.log(event.target.getAttribute('firstname'));
             console.log(event.target.getAttribute('secondname'));
             console.log(event.target.getAttribute('score'));
-            document.getElementById('player1').innerText = event.target.getAttribute('secondname');
+
+            if ( isclicked === false ) {
+                document.getElementById('player1').innerText = event.target.getAttribute('secondname');
+                isclicked = true;
+            } else {
+                document.getElementById('player2').innerText = event.target.getAttribute('secondname');
+                isclicked = false;
+            }
         });
 
         async function validateInput() {
