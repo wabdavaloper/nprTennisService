@@ -177,7 +177,9 @@
                 } else if (response.status === 200){
                     console.log('Матч успешно создан');
                     document.getElementById('array').innerHTML = '';
-                    window.location.reload(); //asdas
+                    setTimeout(()=>{
+                        window.location.reload(true);
+                    });
                     //await printBtn();
                 }
             } else {
