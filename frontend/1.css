@@ -153,9 +153,9 @@ input[type="number"]:focus {
 .knop2 {
   margin-left: 106px;
 }
-.player-inputs {
+.player-span {
   padding: 5px;
-  font-size: 16px;
+  font-size: 20px;
   width: 100%;
   font-weight: bold;
   margin-top: 5px;
@@ -235,7 +235,7 @@ input[type="number"]:focus {
   display: inline-block;
   padding: 12px 12px;
   border-radius: 30px;
-  color: red;
+  color: black;
   text-align: center;
   text-decoration: none;
   font-size: 18px;
