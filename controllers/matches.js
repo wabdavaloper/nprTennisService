@@ -39,12 +39,14 @@ matches.post('/', async (req, res) => {
   console.log(req.body);
   try {
     const result = await matchLogic.createNewMatches(req.body.winnerId, req.body.losserId);
-	console.log(result);
-    if (!result || result.length !== 2 || result.name === 'error') {
-		return res.status(400).json({msg: 'Некорректный запрос'})
+	  
+    if (!result) {
+      console.log('400', result);
+		  return res.status(400).json({msg: 'Некорректный запрос'})
     } else {
-		return res.status(200).json({msg: result});
-	}
+      console.log('200', result);
+		  return res.status(200).json({msg: result});
+	  } 
   } catch (err) {
     log.writeLog('ERROR', req.path, err.message);
     return res.status(500).json({msg: 'Internal server error'});
