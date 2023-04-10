@@ -36,6 +36,7 @@ const matches = express();
  */
 matches.post('/', async (req, res) => {
   log.writeLog(req.method, req.path, req.body);
+  console.log(req.body);
   try {
     const result = await matchLogic.createNewMatches(req.body.winnerId, req.body.losserId);
 	console.log(result);

@@ -61,9 +61,7 @@ const createNewMatches = async (winnerId, losserId) => {
             console.log(err)
             await pool.query('ROLLBACK');
             return false;
-        } finally {
-            await pool.end();
-        }
+        } 
     }
 }
 
