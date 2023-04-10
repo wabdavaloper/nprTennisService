@@ -143,6 +143,41 @@
             console.log(response);
             return players
         }
+          
+          
+          document.querySelector('.but').addEventListener('click', async event => {
+            event.preventDefault();
+            const score1 = document.getElementById('score1').value;
+            const score2 = document.getElementById('score2').value;
+            const player1 = document.getElementById('player1').innerText;
+            const player2 = document.getElementById('player2').innerText;
+
+            if (player1 && player2 && score1 && score2) {
+                const response = await fetch('http://45.94.122.254:3000/api/matches', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        player1,
+                        player2,
+                        score1,
+                        score2
+                    })
+                });
+                    console.log(response);
+                    
+                if (response.ok) {
+                    console.log('Данные успешно отправлены на сервер');
+                } else {
+                    console.log('Ошибка при отправке данных на сервер');
+                }
+            } else {
+                console.log('Заполните все поля');
+            }
+        });
+          
+          
       </script>
    </body>
 </html>
