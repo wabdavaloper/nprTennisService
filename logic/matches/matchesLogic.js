@@ -31,19 +31,26 @@ const insertMatch = async (winnerId, winnerScore, losserId, losserScore) => {
 * РП = РТП - (100 – (РТВ – РТП)) / 20. 50 - (100 - (50 - 50)) / 20 = 45
 * где РТВ - текущий рейтинг выигравшего игрока, РТП - текущий рейтинг проигравшего игрока
 */
-const createNewMatches = async (winnerId, losserId) => {
-
+const createNewMatches = async (winnerId, losserId, winnerPoints, losserPoints) => {
 
     if (!winnerId || !losserId) {
         console.log('Необходимо заполнить никнейм победившего участника и проигравшего');
         return 'Необходимо заполнить никнейм победившего участника и проигравшего';
-    } else if (!winnerId) {
-        console.log('Необходимо заполнить никнейм победившего участника');
-        return 'Необходимо заполнить никнейм победившего участника';
-    } else if (!losserId) {
-        console.log('Необходимо заполнить никнейм проигравшего участника');
-        return 'Необходимо заполнить никнейм проигравшего участника';
-    } else if (isNaN(parseInt(winnerId)) || isNaN(parseInt(losserId))) {
+    } 
+    else if ( !winnerPoints || !losserPoints )
+    {
+        console.log('Необходимо заполнить счет у обоих игроков');
+        return 'Необходимо заполнить счет у обоих игроков';   
+    }
+    else if ( (winnerPoints + losserPoints > 3) || (winnerPoints + losserPoints < 2)){
+        console.log('Счет матча заполнен некорректно. Возможны следующие комбинации: 2:0, 0:2, 2:1, 1:2');
+        return 'Счет матча заполнен некорректно. Возможны следующие комбинации: 2:0, 0:2, 2:1, 1:2';
+    }
+    else if (winnerPoints === losserPoints) {
+        console.log('Необходимо выбрать двух разных игроков');
+        return 'Необходимо выбрать двух разных игроков';  
+    }
+    else if (isNaN(parseInt(winnerId)) || isNaN(parseInt(losserId))) {
         console.log('Некорректный запрос');
         return 'Некорректный запрос';
     } else {

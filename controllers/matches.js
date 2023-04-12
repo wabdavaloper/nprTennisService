@@ -18,6 +18,8 @@ const matches = express();
  *           required:
  *             - winnerId
  *             - losserId
+ *             - winnerPoints
+ *             - losserPoints
  *           properties:
  *             winnerId:
  *               type: string
@@ -25,6 +27,13 @@ const matches = express();
  *             losserId:
  *               type: string
  *               description: Айди проигравшего
+ *             winnerPoints:
+ *               type: string
+ *               description: Счет победителя
+ *             losserPoints:
+ *               type: string
+ *               description: Счет Рроигравшего
+ * 
  *   description: Создание с результатами нового матча между двумя игроками
  *   responses:
  *       200:
@@ -38,7 +47,7 @@ matches.post('/', async (req, res) => {
   log.writeLog(req.method, req.path, req.body);
   console.log(req.body);
   try {
-    const result = await matchLogic.createNewMatches(req.body.winnerId, req.body.losserId);
+    const result = await matchLogic.createNewMatches(req.body.winnerId, req.body.losserId, parseInt(req.body.losserPoints), parseInt(req.body.winnerPoints));
 	  
     if (!result) {
       console.log('400', result);
