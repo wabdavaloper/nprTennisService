@@ -93,10 +93,10 @@
             console.log(event.target.getAttribute('score'));
 
             if ( isclicked === false ) {
-                document.getElementById('player1').innerText = event.target.getAttribute('secondname');
+                document.getElementById('player1').value = event.target.getAttribute('secondname');
                 isclicked = true;
             } else {
-                document.getElementById('player2').innerText = event.target.getAttribute('secondname');
+                document.getElementById('player2').value = event.target.getAttribute('secondname');
                 isclicked = false;
             }
         });
