@@ -155,6 +155,9 @@
         }
           
         const showModalError = (msg) => {
+            document.getElementById('msgBox').remove();
+            document.createElement('div');
+            document.getElementById('msgBox').setAttribute('id', 'msgBox');
             const box = document.getElementById('msgBox');
             box.innerHTML = `<p>${msg}</p>`;
             box.style.top = '100px';
@@ -162,6 +165,9 @@
 			box.style.animationName = 'bounceInDown';
 			box.style.animationDuration = '1s';
             setTimeout(() => {
+                document.getElementById('msgBox').remove();
+                document.createElement('div');
+                document.getElementById('msgBox').setAttribute('id', 'msgBox');
                 box.style.animationName = 'bounceInDown';
                 box.style.animationDuration = '1s';
                 box.style.top = '-100px';
@@ -170,6 +176,9 @@
             
         }  
         const showModalSuccess = (msg) => {
+            document.getElementById('msgBox').remove();
+            document.createElement('div');
+            document.getElementById('msgBox').setAttribute('id', 'msgBox');
             const box = document.getElementById('msgBox');
             box.innerHTML = `<p>${msg}</p>`;
             box.style.top = '100px';
@@ -177,6 +186,9 @@
 			box.style.animationName = 'bounceInDown';
 			box.style.animationDuration = '1s';
             setTimeout(() => {
+                document.getElementById('msgBox').remove();
+                document.createElement('div');
+                document.getElementById('msgBox').setAttribute('id', 'msgBox');
                 box.style.animationName = 'bounceInDown';
                 box.style.animationDuration = '1s';
                 box.style.top = '-100px';
