@@ -94,9 +94,11 @@
 
             if ( isclicked === false ) {
                 document.getElementById('player1').innerText = event.target.getAttribute('secondname');
+                document.getElementById('player1').setAttribute('winnerId', event.target.getAttribute('idplayers'));
                 isclicked = true;
             } else {
                 document.getElementById('player2').innerText = event.target.getAttribute('secondname');
+                document.getElementById('player2').setAttribute('losserId', event.target.getAttribute('idplayers'));
                 isclicked = false;
             }
         });
@@ -169,10 +171,10 @@
 
           document.querySelector('.but').addEventListener('click', async event => {
             event.preventDefault();
-            const score1 = document.getElementById('score1').value;
-            const score2 = document.getElementById('score2').value;
-            const player1 = document.getElementById('player1').innerText;
-            const player2 = document.getElementById('player2').innerText;
+            const winnerPoints = document.getElementById('score1').value;
+            const losserPoints   = document.getElementById('score2').value;
+            const winnerId       = document.getElementById('player1').getAttribute('winnerid');
+            const losserId       = document.getElementById('player2').getAttribute('losserid');
 
             const response = await fetch('http://45.94.122.254:3000/api/matches', {
                 method: 'POST',
@@ -180,10 +182,10 @@
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    player1,
-                    player2,
-                    score1,
-                    score2
+                    winnerId,
+                    losserId,
+                    winnerPoints,
+                    losserPoints
                 })
             });
             let data = await response.json();

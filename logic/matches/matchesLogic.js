@@ -37,7 +37,7 @@ const createNewMatches = async (winnerId, losserId, winnerPoints, losserPoints) 
         console.log('Необходимо заполнить никнейм победившего участника и проигравшего');
         return 'Необходимо заполнить никнейм победившего участника и проигравшего';
     } 
-    else if ( !winnerPoints || !losserPoints )
+    else if ( (winnerPoints == '') || (losserPoints == '') )
     {
         console.log('Необходимо заполнить счет у обоих игроков');
         return 'Необходимо заполнить счет у обоих игроков';   
