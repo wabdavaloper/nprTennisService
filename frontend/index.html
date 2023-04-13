@@ -22,7 +22,7 @@
       </div>
       <div id='forma'>
          <h2 class="h1">Результат матча</h2>
-         <form>
+         <div>
             <div class="sek">
                <input type="number" id="score1" name="score1" min="0" max="2" required/>
                <br>
@@ -44,14 +44,28 @@
             </div>
             <div class="knopki">
                <div class="knop1"><button type="submit" class="but">Зафиксировать</button></div>
-               <div class="knop2"><button class="clear">Отмена</button></div>
+               <div class="knop2"><button class="clear" id="clear">Отмена</button></div>
             </div>
-         </form>
+         </div>
       </div>
       <!--footer>
          <p>&copy; 2023 WORLD TENNIS SPUTNIK RATING by ЧТП. All rights reserved.</p>
          </footer-->
       <script>
+
+        document.getElementById('clear').addEventListener('click', () => {
+                document.getElementById('player1').setAttribute('winnerId', '');
+                document.getElementById('player1').innerText = '';
+                
+                document.getElementById('player2').setAttribute('losserid', '');
+                document.getElementById('player2').innerText = '';
+
+                document.getElementById('score1').innerText = '';
+                document.getElementById('score2').innerText = '';
+
+                document.getElementById('score1').value = '';
+                document.getElementById('score2').value = '';
+        });
 
         async function printBtn() {
             const players = await GetPlayers();
@@ -155,9 +169,6 @@
         }
           
         const showModalError = (msg) => {
-            document.getElementById('msgBox').remove();
-            document.createElement('div');
-            document.getElementById('msgBox').setAttribute('id', 'msgBox');
             const box = document.getElementById('msgBox');
             box.innerHTML = `<p>${msg}</p>`;
             box.style.top = '100px';
@@ -165,20 +176,17 @@
 			box.style.animationName = 'bounceInDown';
 			box.style.animationDuration = '1s';
             setTimeout(() => {
-                document.getElementById('msgBox').remove();
-                document.createElement('div');
-                document.getElementById('msgBox').setAttribute('id', 'msgBox');
+                box.style.animation = 'none';
                 box.style.animationName = 'bounceInDown';
                 box.style.animationDuration = '1s';
                 box.style.top = '-100px';
+                box.style.animation = 'none';
             }
             , 5000);
             
         }  
         const showModalSuccess = (msg) => {
-            document.getElementById('msgBox').remove();
-            document.createElement('div');
-            document.getElementById('msgBox').setAttribute('id', 'msgBox');
+            
             const box = document.getElementById('msgBox');
             box.innerHTML = `<p>${msg}</p>`;
             box.style.top = '100px';
@@ -186,12 +194,11 @@
 			box.style.animationName = 'bounceInDown';
 			box.style.animationDuration = '1s';
             setTimeout(() => {
-                document.getElementById('msgBox').remove();
-                document.createElement('div');
-                document.getElementById('msgBox').setAttribute('id', 'msgBox');
+                box.style.animation = 'none';
                 box.style.animationName = 'bounceInDown';
                 box.style.animationDuration = '1s';
                 box.style.top = '-100px';
+                box.style.animation = 'none';
             }
             , 5000);
             
