@@ -64,7 +64,7 @@ const createNewMatches = async (winnerId, losserId, winnerPoints, losserPoints) 
             await insertMatch(winnerId, defaultWinnerScore, losserId, defaultLosserScore);
             console.log(`Created new match winner: ${winnerId}, score: ${defaultWinnerScore}, losser: ${losserId}, score: ${defaultLosserScore}`);
             await pool.query('COMMIT');
-            return `Created new match winner: ${winnerId}, score: ${defaultWinnerScore}, losser: ${losserId}, score: ${defaultLosserScore}`;
+            return `MATCH_CREATED`;
         } catch (err) {
             console.log(err)
             await pool.query('ROLLBACK');

@@ -52,10 +52,12 @@ matches.post('/', async (req, res) => {
     if (!result) {
       console.log('400', result);
 		  return res.status(400).json({msg: 'Некорректный запрос'})
-    } else {
+    } else if (result == 'MATCH_CREATED') {
       console.log('200', result);
 		  return res.status(200).json({msg: result});
-	  } 
+	  } else {
+      return res.status(400).json({msg: result});
+    }
   } catch (err) {
     log.writeLog('ERROR', req.path, err.message);
     return res.status(500).json({msg: 'Internal server error'});
