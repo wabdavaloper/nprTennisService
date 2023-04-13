@@ -8,15 +8,21 @@
    </head>
    <body onload="printBtn();">
       <header>
-         <h1>WORLD TENNIS SPUTNIK RATING</h1>
+      <div class="logo">
+       <img src="logo.png">
+       </div>
+
       </header>
+    
+             
       <div id="array" class="array">
+               
       </div>
       <div id='forma'>
          <h2 class="h1">Результат матча</h2>
          <form>
             <div class="sek">
-               <input type="number" id="score1" name="score1" min="1" max="2" required/>
+               <input type="number" id="score1" name="score1" min="0" max="2" required/>
                <br>
                <div class="span">
                   <span id="player1" class="player-inputs"></span>
@@ -27,7 +33,7 @@
                <h1>VS</h1>
             </div>
             <div class="sek">
-               <input type="number" id="score2" name="score2" min="1" max="2" required / >
+               <input type="number" id="score2" name="score2" min="0" max="2" required / >
                <br>
                <div class="span">
                   <span id="player2" class="player-inputs"></span>
@@ -86,11 +92,9 @@
 
             if ( isclicked === false ) {
                 document.getElementById('player1').innerText = event.target.getAttribute('secondname');
-                document.getElementById('player1').setAttribute('winnerid', event.target.getAttribute('idplayers'));
                 isclicked = true;
             } else {
                 document.getElementById('player2').innerText = event.target.getAttribute('secondname');
-                document.getElementById('player2').setAttribute('losserid', event.target.getAttribute('idplayers'))
                 isclicked = false;
             }
         });
@@ -153,12 +157,7 @@
             const score2 = document.getElementById('score2').value;
             const player1 = document.getElementById('player1').innerText;
             const player2 = document.getElementById('player2').innerText;
-            const winnerId = document.getElementById('player1').getAttribute('winnerid').toString();
-            const losserId = document.getElementById('player2').getAttribute('losserId').toString();
-            console.log(JSON.stringify({
-                        "winnerId": winnerId,
-                        "losserId": losserId
-                    }));
+
             if (player1 && player2 && score1 && score2) {
                 const response = await fetch('http://45.94.122.254:3000/api/matches', {
                     method: 'POST',
@@ -166,21 +165,18 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        "winnerId": winnerId,
-                        "losserId": losserId
+                        player1,
+                        player2,
+                        score1,
+                        score2
                     })
                 });
-
-                let result = await response.json();
-                if (response.status === 400) {
+                    console.log(response);
+                    
+                if (response.ok) {
+                    console.log('Данные успешно отправлены на сервер');
+                } else {
                     console.log('Ошибка при отправке данных на сервер');
-                } else if (response.status === 200){
-                    console.log('Матч успешно создан');
-                    document.getElementById('array').innerHTML = '';
-                    setTimeout(()=>{
-                        window.location.href = 'http://45.94.122.254:3000/'
-                    }, 2000);
-                    //await printBtn();
                 }
             } else {
                 console.log('Заполните все поля');
