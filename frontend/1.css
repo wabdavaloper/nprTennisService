@@ -6,10 +6,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Andale Mono", monospace;
-  background: #FDC830;
-  background: -webkit-linear-gradient(to right, #F37335, #FDC830);
-  background: linear-gradient(to right, #F37335, #FDC830);
-  background-size:500% 500%;
+  background-image: url(1667438816_3-sportishka-com-p-nastolnii-tennis-oboi-vkontakte-3.png);
   -webkit-animation:ServiceAnimation 10s ease infinite;
   -moz-animation:ServiceAnimation 10s ease infinite;
   -o-animation:ServiceAnimation 10s ease infinite;
@@ -29,9 +26,11 @@ header {
  /* устанавливаем свойство left в 0 */
   right: 0;
  /* устанавливаем свойство right в 0 */
-  height: 90px;
+  height: 10%;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
+
+
 .tab {
   font-family: "Andale Mono", monospace;
   display: flex;
@@ -50,6 +49,7 @@ header {
   box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   transition: background-color 0.3s ease-in-out;
 }
+
 .tab button {
   margin-right: 10px;
   margin-bottom: 10px;
@@ -66,20 +66,51 @@ header {
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
+
 button:hover {
   transform: scale(1.05);
 }
+
 .tab:hover {
   background-color: #2E8B57;
   cursor: pointer;
 }
 
-.color1:hover {
-  background-color: !important #2E8B57;
-  cursor: pointer;
-}
+@media screen and (max-width: 768px) {
+  .tab {
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 16px;
+    margin-bottom: 8px;
+    width: calc(100% - 32px);
+    max-width: 400px;
+    box-shadow: none;
+    transition: none;
+    background-color: transparent;
+  }
 
+  .tab button {
+    margin-right: 8px;
+    margin-bottom: 8px;
+    background-color: #4CAF50;
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 16px;
+    box-shadow: none;
+    font-size: 0.9em;
+    padding: 0.4em 0.8em;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
 
+  .color1:hover {
+    background-color: #2E8B57 !important;
+    cursor: pointer;
+  }
+} 
 
 #forma {
   display: flex;
@@ -89,17 +120,15 @@ button:hover {
   margin-left: 600px;
   box-shadow: 8px 8px 6px rgba(0,0,0,0.3);
   color: white;
-  padding: 30px;
+  padding: 1%;
   position: fixed;
   height: 35%;
   background: rgba(0,0,0,.5);
   box-sizing: border-box;
   box-shadow: 0 35px 45px rgba(0,0,0,.6);
   border-radius: 10px;
-}
-label {
-  margin-top: 10px;
- /* добавляем отступ сверху */
+  width: 45%;   
+  justify-content: space-between;
 }
 input[type="number"] {
   padding: 5px;
@@ -114,11 +143,13 @@ input[type="number"] {
   width: 100%;
   box-sizing: border-box;
   border: 1px solid #ddd;
-  font-size: 14px;
+  font-size: 25px;
   border-radius: 3px;
+  color: yellow;
+    
 }
 input[type="number"]:focus {
-  outline: 2px so 
+  outline: 2px solid; 
 }
 .but {
   background-color: #4CAF50;
@@ -140,8 +171,32 @@ input[type="number"]:focus {
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
+
+@media screen and (max-width: 768px) {
+  #forma {
+    width: 80%;
+    margin-left: 10%;
+    height: auto;
+    position: static;
+    margin-bottom: 5%;
+  }
+} 
+
+@media screen and (max-width: 480px) {
+  input[type="number"] {
+    font-size: 12px;
+  }
+  
+  .but, .clear {
+    width: 100%;
+  }
+}
+
+
+
 .knopki {
-  margin-right: 20px;
+  margin-right: 1px;
+ opacity: 0.9;
 }
 .knop1, .knop2 {
   display: inline-block;
@@ -159,7 +214,15 @@ input[type="number"]:focus {
   width: 100%;
   font-weight: bold;
   margin-top: 5px;
+ 
 }
+
+.player-inputs {
+    font-size: 30px;
+    color: #f87300;    
+}
+
+
 h1 {
   margin: 10px;
   padding: 20px;
@@ -186,8 +249,8 @@ h1 {
   flex-direction: column;
   align-items: center;
   position: relative;
-  margin-left: 5px;
-  margin-top: 25px;
+
+    margin-right: 9%;
 }
 .vs {
   display:inline-block;
@@ -230,7 +293,11 @@ input[type="number"]:focus {
   width: 90px;
   height: 90px;
   margin-left: 29px;
-}
+  border: 3px solid yellow; 
+  background-color: rgba(0, 0, 0, 0.1); /* прозрачный белый */
+  border-color: yellow; /* желтая рамка */
+} 
+
 .span {
   display: inline-block;
   padding: 12px 12px;
@@ -238,12 +305,14 @@ input[type="number"]:focus {
   color: black;
   text-align: center;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 1px;
   box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.2);
-  height: 15px;
-  width: 130px;
+    border: 3px solid yellow; 
+  opacity: 1;
   margin-top: 15%;
-  margin-right: 20%;
+  margin-right: 18%;
+      min-width:80%;
+    height: 200%;
 }
 .color1 {
   display: flex;
@@ -283,3 +352,35 @@ input[type="number"] {
 input[type="number"]:hover, input[type="number"]:focus {
   border: 2px solid #000000;
 }
+
+.logo {
+    width: 5%;
+  height: 10%;
+flex-direction: column;
+    margin-right: 100%; 
+   
+}
+
+logo img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+img {
+    
+    width: 200px;
+    height: 90px;
+    
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 24px;
+    padding: 10px;
+  }
+    
+    
+      #result-span {
+    font-size: 16px;
+    margin-top: 10%;
+  }
