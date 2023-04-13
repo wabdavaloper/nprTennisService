@@ -154,10 +154,26 @@
             return players
         }
           
-        const showModal = (msg) => {
+        const showModalError = (msg) => {
             const box = document.getElementById('msgBox');
             box.innerHTML = `<p>${msg}</p>`;
             box.style.top = '100px';
+            box.style.backgroundColor = 'coral'
+			box.style.animationName = 'bounce';
+			box.style.animationDuration = '1s';
+            setTimeout(() => {
+                box.style.animationName = 'bounce';
+                box.style.animationDuration = '1s';
+                box.style.top = '-100px';
+            }
+            , 5000);
+            
+        }  
+        const showModalSuccess = (msg) => {
+            const box = document.getElementById('msgBox');
+            box.innerHTML = `<p>${msg}</p>`;
+            box.style.top = '100px';
+            box.style.backgroundColor = 'lightGreen'
 			box.style.animationName = 'bounce';
 			box.style.animationDuration = '1s';
             setTimeout(() => {
@@ -191,11 +207,24 @@
             let data = await response.json();
             console.log(data)
             console.log(response)
-            if (response.ok) {
-                console.log('Данные успешно отправлены на сервер');
-                showModal(data.msg);
+            if (response.status == 200) {
+                showModalSuccess('Матч успешно создан');
+                // очищаем поля с аттрибутами
+                document.getElementById('player1').setAttribute('winnerId', '');
+                document.getElementById('player1').innerText = '';
+                
+                document.getElementById('player2').setAttribute('losserid', '');
+                document.getElementById('player2').innerText = '';
+
+                document.getElementById('score1').innerText = '';
+                document.getElementById('score2').innerText = '';
+
+                document.getElementById('score1').value = '';
+                document.getElementById('score2').value = '';
+
             } else {
-                console.log('Ошибка при отправке данных на сервер');
+                console.log('Данные успешно отправлены на сервер');
+                showModalError(data.msg);
             }
 
         });
