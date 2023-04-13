@@ -51,9 +51,13 @@ const createNewMatches = async (winnerId, losserId, winnerPoints, losserPoints) 
         console.log('Необходимо выбрать двух разных игроков');
         return 'Необходимо выбрать двух разных игроков';  
     }
+    else if (isNaN(winnerPoints) || isNaN(losserPoints)) {
+        console.log('Некорректный заполнен счет игроков');
+        return 'Некорректный заполнен счет игроков';
+    } 
     else if (isNaN(parseInt(winnerId)) || isNaN(parseInt(losserId))) {
-        console.log('Некорректный запрос');
-        return 'Некорректный запрос';
+        console.log('Некорректный заполнен счет игроков');
+        return 'Некорректный заполнен счет игроков';
     } else {
         try {
             await pool.query('BEGIN');
