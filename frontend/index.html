@@ -208,6 +208,7 @@
             console.log(data)
             console.log(response)
             if (response.status == 200) {
+                await printBtn();
                 showModalSuccess('Матч успешно создан');
                 // очищаем поля с аттрибутами
                 document.getElementById('player1').setAttribute('winnerId', '');
@@ -221,7 +222,7 @@
 
                 document.getElementById('score1').value = '';
                 document.getElementById('score2').value = '';
-
+                
             } else {
                 console.log('Данные успешно отправлены на сервер');
                 showModalError(data.msg);
