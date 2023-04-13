@@ -38,14 +38,14 @@ const createNewMatches = async (winnerId, losserId, winnerPoints, losserPoints) 
         console.log('Необходимо заполнить никнейм победившего участника и проигравшего');
         return 'Необходимо заполнить никнейм победившего участника и проигравшего';
     } 
-    else if ( (winnerPoints == '') || (losserPoints == '') )
+    else if ( (winnerPoints.toString() == '') || (losserPoints.toString() == '') )
     {
         console.log('Необходимо заполнить счет у обоих игроков');
         return 'Необходимо заполнить счет у обоих игроков';   
     }
     else if ( (winnerPoints + losserPoints > 3) || (winnerPoints + losserPoints < 2)){
-        console.log('Счет матча заполнен некорректно. Возможны следующие комбинации: 2:0, 0:2, 2:1, 1:2');
-        return 'Счет матча заполнен некорректно. Возможны следующие комбинации: 2:0, 0:2, 2:1, 1:2';
+        console.log('Счет матча заполнен некорректно.');
+        return 'Счет матча заполнен некорректно.';
     }
     else if (winnerPoints === losserPoints) {
         console.log('Необходимо выбрать двух разных игроков');
