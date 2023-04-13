@@ -32,7 +32,8 @@ const insertMatch = async (winnerId, winnerScore, losserId, losserScore) => {
 * где РТВ - текущий рейтинг выигравшего игрока, РТП - текущий рейтинг проигравшего игрока
 */
 const createNewMatches = async (winnerId, losserId, winnerPoints, losserPoints) => {
-
+    console.log('winnerPoints', winnerPoints);
+    console.log('losserPoints', losserPoints);
     if (!winnerId || !losserId) {
         console.log('Необходимо заполнить никнейм победившего участника и проигравшего');
         return 'Необходимо заполнить никнейм победившего участника и проигравшего';

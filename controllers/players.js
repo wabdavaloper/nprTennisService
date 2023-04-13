@@ -19,9 +19,9 @@ players.get('/all', async (req, res) => {
 
     try {
         console.log('success');
-        res.json({msg: await playerLogic.getAllPlayersInfo()}).status(200);
+        return res.json({msg: await playerLogic.getAllPlayersInfo()}).status(200);
     } catch {
-        res.json({msg: err}).status(401);
+        return res.json({msg: err}).status(401);
     }
 
 });
