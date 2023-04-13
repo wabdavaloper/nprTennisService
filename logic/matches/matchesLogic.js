@@ -47,7 +47,7 @@ const createNewMatches = async (winnerId, losserId, winnerPoints, losserPoints) 
         console.log('Счет матча заполнен некорректно.');
         return 'Счет матча заполнен некорректно.';
     }
-    else if (winnerPoints === losserPoints) {
+    else if (winnerId === losserId) {
         console.log('Необходимо выбрать двух разных игроков');
         return 'Необходимо выбрать двух разных игроков';  
     }
