@@ -159,10 +159,10 @@
             box.innerHTML = `<p>${msg}</p>`;
             box.style.top = '100px';
             box.style.backgroundColor = 'coral'
-			box.style.animationName = 'bounce';
+			box.style.animationName = 'bounceInDown';
 			box.style.animationDuration = '1s';
             setTimeout(() => {
-                box.style.animationName = 'bounce';
+                box.style.animationName = 'bounceInDown';
                 box.style.animationDuration = '1s';
                 box.style.top = '-100px';
             }
@@ -173,11 +173,11 @@
             const box = document.getElementById('msgBox');
             box.innerHTML = `<p>${msg}</p>`;
             box.style.top = '100px';
-            box.style.backgroundColor = 'lightGreen'
-			box.style.animationName = 'bounce';
+            box.style.backgroundColor = 'green'
+			box.style.animationName = 'bounceInDown';
 			box.style.animationDuration = '1s';
             setTimeout(() => {
-                box.style.animationName = 'bounce';
+                box.style.animationName = 'bounceInDown';
                 box.style.animationDuration = '1s';
                 box.style.top = '-100px';
             }
@@ -225,7 +225,7 @@
                 document.getElementById('score2').value = '';
                 
             } else {
-                console.log('Данные успешно отправлены на сервер');
+                console.log('error');
                 showModalError(data.msg);
             }
 
