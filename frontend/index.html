@@ -208,6 +208,7 @@
             console.log(data)
             console.log(response)
             if (response.status == 200) {
+                document.getElementById('array').innerHTML = '';
                 await printBtn();
                 showModalSuccess('Матч успешно создан');
                 // очищаем поля с аттрибутами
