@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Andale Mono", monospace;
-  background-image: url(1667438816_3-sportishka-com-p-nastolnii-tennis-oboi-vkontakte-3.png);
+  background-image: url(bg.png);
   -webkit-animation:ServiceAnimation 10s ease infinite;
   -moz-animation:ServiceAnimation 10s ease infinite;
   -o-animation:ServiceAnimation 10s ease infinite;
