@@ -93,10 +93,10 @@
             console.log(event.target.getAttribute('score'));
 
             if ( isclicked === false ) {
-                document.getElementById('player1').value = event.target.getAttribute('secondname');
+                document.getElementById('player1').innerText = event.target.getAttribute('secondname');
                 isclicked = true;
             } else {
-                document.getElementById('player2').value = event.target.getAttribute('secondname');
+                document.getElementById('player2').innerText = event.target.getAttribute('secondname');
                 isclicked = false;
             }
         });
@@ -171,8 +171,8 @@
             event.preventDefault();
             const score1 = document.getElementById('score1').value;
             const score2 = document.getElementById('score2').value;
-            const player1 = document.getElementById('player1').value;
-            const player2 = document.getElementById('player2').value;
+            const player1 = document.getElementById('player1').innerText;
+            const player2 = document.getElementById('player2').innerText;
 
             const response = await fetch('http://45.94.122.254:3000/api/matches', {
                 method: 'POST',
