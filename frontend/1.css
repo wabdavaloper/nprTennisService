@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Andale Mono", monospace;
-  background-image: url(bg.png);
+  background-image: url(tennis-ball-in-net-slow-motion_so6aon9l__f0003.png);
   -webkit-animation:ServiceAnimation 10s ease infinite;
   -moz-animation:ServiceAnimation 10s ease infinite;
   -o-animation:ServiceAnimation 10s ease infinite;
@@ -67,12 +67,15 @@ header {
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 25px;
   border-radius: 20px;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   transition: background-color 0.3s ease-in-out;
+    opacity: 0.5;
 }
-
+.tab span {
+  opacity: 1; / отменяем прозрачность для текста на кнопке /
+}
 .tab button {
   margin-right: 10px;
   margin-bottom: 10px;
@@ -88,6 +91,7 @@ header {
   padding: 0.5em 1em;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
+    opacity: 1; / отменяем прозрачность для текста на кнопке /
 }
 
 button:hover {
@@ -97,6 +101,8 @@ button:hover {
 .tab:hover {
   background-color: #2E8B57;
   cursor: pointer;
+      transform: scale(1.05);
+  opacity: 1;
 }
 
 @media screen and (max-width: 768px) {
@@ -110,6 +116,7 @@ button:hover {
     box-shadow: none;
     transition: none;
     background-color: transparent;
+     
   }
 
   .tab button {
@@ -145,12 +152,12 @@ button:hover {
   color: white;
   padding: 1%;
   position: fixed;
-  height: 35%;
+  height: 45%;
   background: rgba(0,0,0,.5);
   box-sizing: border-box;
-  box-shadow: 0 35px 45px rgba(0,0,0,.6);
+  box-shadow: 0 35px 37px rgba(0,0,0,.6);
   border-radius: 10px;
-  width: 45%;   
+  width: 42%;   
   justify-content: space-between;
 }
 input[type="number"] {
@@ -175,24 +182,31 @@ input[type="number"]:focus {
   outline: 2px solid; 
 }
 .but {
-  background-color: #4CAF50;
+ width: 200px;
+  background-color: green;
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
-  width: 155px;
+    font-size: 18px;
+    opacity: 0.5;
+    height: 50px;
 }
 .clear {
-  width: 155px;
+  width: 200px;
   background-color: red;
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
+    font-size: 20px;
+     opacity: 0.5;
+       height: 50px;
+    
 }
 
 @media screen and (max-width: 768px) {
@@ -217,32 +231,23 @@ input[type="number"]:focus {
 
 
 
-.knopki {
-  margin-right: 1px;
- opacity: 0.9;
-}
+
 .knop1, .knop2 {
   display: inline-block;
  /*располагаем блоки в ряд по горизонтали*/
 }
 .knop1 {
   margin-left: 9px;
+ 
 }
 .knop2 {
   margin-left: 106px;
 }
-.player-span {
-  padding: 5px;
-  font-size: 20px;
-  width: 100%;
-  font-weight: bold;
-  margin-top: 5px;
- 
-}
+
 
 .player-inputs {
     font-size: 30px;
-    color: #f87300;    
+    color: yellow;    
 }
 
 
@@ -250,30 +255,30 @@ h1 {
   margin: 10px;
   padding: 20px;
   text-align: center;
+  
 }
-#clear {
-  background-color: red;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px;
+h2{
+    
+    
+       color: yellow;
+    font-size: 40px;
 }
+
+
 #array {
   margin-right: 50%;
   clear:both;
   word-wrap: break-word;
   height: auto;
- /* чтобы кнопки не переносились на новую строку */
+ /* чтобы кнопки не переносились на новурю строку */
 }
 .sek {
   display:inline-block;
   flex-direction: column;
   align-items: center;
-  position: relative;
 
-    margin-right: 9%;
+    padding-right: 8px;
+
 }
 .vs {
   display:inline-block;
@@ -298,25 +303,13 @@ input[type="number"]:focus {
   box-shadow: 0 0 5px #2c3e50;
  /* добавляем тень при фокусе */
 }
-#result-span {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 20px;
-}
-.player-btn {
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin: 5px;
-}
+
 #score1, #score2 {
-  width: 90px;
-  height: 90px;
-  margin-left: 29px;
-  border: 3px solid yellow; 
+  width: 125px;
+  height: 125px;
+  margin-left: 2%;
+  margin-bottom: 45%;
+  border: 5px solid yellow; 
   background-color: rgba(0, 0, 0, 0.1); /* прозрачный белый */
   border-color: yellow; /* желтая рамка */
 } 
@@ -328,15 +321,24 @@ input[type="number"]:focus {
   color: black;
   text-align: center;
   text-decoration: none;
-  font-size: 1px;
+  font-size: 27px;
   box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.2);
-    border: 3px solid yellow; 
+  border: 5px solid yellow; 
   opacity: 1;
   margin-top: 15%;
-  margin-right: 18%;
-      min-width:80%;
-    height: 200%;
+  padding-right: 10%;
+  min-width:150%;
+  height: 27px;
+
 }
+span {
+    
+    
+    
+       min-height: 50%;
+}
+
+
 .color1 {
   display: flex;
   flex-direction: column;
@@ -350,10 +352,12 @@ input[type="number"]:focus {
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 25px;
   border-radius: 20px;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   transition: background-color 0.3s ease-in-out;
+        opacity: 0.5;
+
 }
 .color1:hover {
   transform: scale(1.05);
@@ -400,8 +404,8 @@ img {
   h1 {
     font-size: 24px;
     padding: 10px;
-  }
-    
+   
+  } 
     
       #result-span {
     font-size: 16px;
