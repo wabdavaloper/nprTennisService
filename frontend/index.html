@@ -4,11 +4,9 @@
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
       <title>WSTR</title>
       <link rel="stylesheet" href="1.css">
-      <link rel="stylesheet" type="text/css" href="animate.css">
       <script src="jquery-3.6.4.js"></script>
    </head>
    <body onload="printBtn();">
-      <div id="msgBox"></div>
       <header>
       <div class="logo">
        <img src="logo.png">
@@ -22,8 +20,8 @@
       </div>
       <div id='forma'>
          <h2 class="h1">Результат матча</h2>
-         <div>
-            <div class="sek">
+         <form>
+            <div class="sek" class='sek1'>
                <input type="number" id="score1" name="score1" min="0" max="2" required/>
                <br>
                <div class="span">
@@ -34,7 +32,7 @@
             <div class="vs">
                <h1>VS</h1>
             </div>
-            <div class="sek">
+            <div class="sek" class='sek1'>
                <input type="number" id="score2" name="score2" min="0" max="2" required / >
                <br>
                <div class="span">
@@ -44,28 +42,14 @@
             </div>
             <div class="knopki">
                <div class="knop1"><button type="submit" class="but">Зафиксировать</button></div>
-               <div class="knop2"><button class="clear" id="clear">Отмена</button></div>
+               <div class="knop2"><button class="clear">Отмена</button></div>
             </div>
-         </div>
+         </form>
       </div>
       <!--footer>
          <p>&copy; 2023 WORLD TENNIS SPUTNIK RATING by ЧТП. All rights reserved.</p>
          </footer-->
       <script>
-
-        document.getElementById('clear').addEventListener('click', () => {
-                document.getElementById('player1').setAttribute('winnerId', '');
-                document.getElementById('player1').innerText = '';
-                
-                document.getElementById('player2').setAttribute('losserid', '');
-                document.getElementById('player2').innerText = '';
-
-                document.getElementById('score1').innerText = '';
-                document.getElementById('score2').innerText = '';
-
-                document.getElementById('score1').value = '';
-                document.getElementById('score2').value = '';
-        });
 
         async function printBtn() {
             const players = await GetPlayers();
@@ -108,11 +92,9 @@
 
             if ( isclicked === false ) {
                 document.getElementById('player1').innerText = event.target.getAttribute('secondname');
-                document.getElementById('player1').setAttribute('winnerId', event.target.getAttribute('idplayers'));
                 isclicked = true;
             } else {
                 document.getElementById('player2').innerText = event.target.getAttribute('secondname');
-                document.getElementById('player2').setAttribute('losserId', event.target.getAttribute('idplayers'));
                 isclicked = false;
             }
         });
@@ -168,86 +150,37 @@
             return players
         }
           
-        const showModalError = (msg) => {
-            const box = document.getElementById('msgBox');
-            box.innerHTML = `<p>${msg}</p>`;
-            box.style.top = '100px';
-            box.style.backgroundColor = 'coral'
-			box.style.animationName = 'bounceInDown';
-			box.style.animationDuration = '1s';
-            setTimeout(() => {
-                box.style.animation = 'none';
-                box.style.animationName = 'bounceInDown';
-                box.style.animationDuration = '1s';
-                box.style.top = '-100px';
-                box.style.animation = 'none';
-            }
-            , 5000);
-            
-        }  
-        const showModalSuccess = (msg) => {
-            
-            const box = document.getElementById('msgBox');
-            box.innerHTML = `<p>${msg}</p>`;
-            box.style.top = '100px';
-            box.style.backgroundColor = 'green'
-			box.style.animationName = 'bounceInDown';
-			box.style.animationDuration = '1s';
-            setTimeout(() => {
-                box.style.animation = 'none';
-                box.style.animationName = 'bounceInDown';
-                box.style.animationDuration = '1s';
-                box.style.top = '-100px';
-                box.style.animation = 'none';
-            }
-            , 5000);
-            
-        }  
-
+          
           document.querySelector('.but').addEventListener('click', async event => {
             event.preventDefault();
-            const winnerPoints = document.getElementById('score1').value;
-            const losserPoints   = document.getElementById('score2').value;
-            const winnerId       = document.getElementById('player1').getAttribute('winnerid');
-            const losserId       = document.getElementById('player2').getAttribute('losserid');
+            const score1 = document.getElementById('score1').value;
+            const score2 = document.getElementById('score2').value;
+            const player1 = document.getElementById('player1').innerText;
+            const player2 = document.getElementById('player2').innerText;
 
-            const response = await fetch('http://45.94.122.254:3000/api/matches', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    winnerId,
-                    losserId,
-                    winnerPoints,
-                    losserPoints
-                })
-            });
-            let data = await response.json();
-            console.log(data)
-            console.log(response)
-            if (response.status == 200) {
-                document.getElementById('array').innerHTML = '';
-                await printBtn();
-                showModalSuccess('Матч успешно создан');
-                // очищаем поля с аттрибутами
-                document.getElementById('player1').setAttribute('winnerId', '');
-                document.getElementById('player1').innerText = '';
-                
-                document.getElementById('player2').setAttribute('losserid', '');
-                document.getElementById('player2').innerText = '';
-
-                document.getElementById('score1').innerText = '';
-                document.getElementById('score2').innerText = '';
-
-                document.getElementById('score1').value = '';
-                document.getElementById('score2').value = '';
-                
+            if (player1 && player2 && score1 && score2) {
+                const response = await fetch('http://45.94.122.254:3000/api/matches', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        player1,
+                        player2,
+                        score1,
+                        score2
+                    })
+                });
+                    console.log(response);
+                    
+                if (response.ok) {
+                    console.log('Данные успешно отправлены на сервер');
+                } else {
+                    console.log('Ошибка при отправке данных на сервер');
+                }
             } else {
-                console.log('error');
-                showModalError(data.msg);
+                console.log('Заполните все поля');
             }
-
         });
           
           
