@@ -6,12 +6,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Andale Mono", monospace;
-  background-image: url(bg.png);
+  background-image: url(1638963193_1_sportishka_com_p_nastolnii_tennis_cherno_belie_sport.jpg);
   -webkit-animation:ServiceAnimation 10s ease infinite;
   -moz-animation:ServiceAnimation 10s ease infinite;
   -o-animation:ServiceAnimation 10s ease infinite;
   animation:ServiceAnimation 10s ease infinite;
  /* Время смены цвета */
+    background-size: 100% 100%;
 }
 header {
   background-color: black;
@@ -30,29 +31,6 @@ header {
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
 
-#msgBox {
-  height: 50px;
-  width: 625px;
-  background-color: coral;
-  color: white;
-  font-family: helvetica;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  text-align: center;
-  border-radius: 4px;
-  position: absolute;
-  top: -100px;
-  font-weight: bold;
-  z-index: 1000;
-}
-
-#msgBox p {
-  text-align: center;
-  vertical-align: middle;
-  line-height: 50px;  
-}
 
 .tab {
   font-family: "Andale Mono", monospace;
@@ -62,7 +40,7 @@ header {
   justify-content: center;
   margin-bottom: 10px;
   background-color: black;
-  border: none;
+
   color: white;
   padding: 10px 20px;
   text-align: center;
@@ -71,10 +49,9 @@ header {
   border-radius: 20px;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   transition: background-color 0.3s ease-in-out;
-    opacity: 0.5;
+ 
+ border: 3px solid rgb(248, 248, 248);
 }
-
-
 .tab span {
   opacity: 1; / отменяем прозрачность для текста на кнопке /
 }
@@ -93,8 +70,22 @@ header {
   padding: 0.5em 1em;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
-    opacity: 1; / отменяем прозрачность для текста на кнопке /
+ opacity: 0.5;
 }
+
+button:hover {
+  transform: scale(1.05);
+}
+
+.tab:hover {
+  background-color: #2E8B57;
+  cursor: pointer;
+      transform: scale(1.05);
+  opacity: 1;
+}
+
+
+
 
 button:hover {
   transform: scale(1.05);
@@ -150,16 +141,16 @@ button:hover {
   align-items: center;
   margin-bottom: 15%;
   margin-left: 600px;
-  box-shadow: 8px 8px 6px rgba(0,0,0,0.3);
+  /*box-shadow: 8px 8px 6px rgba(0,0,0,0.3);*/
   color: white;
   padding: 1%;
   position: fixed;
   height: 45%;
-  background: rgba(0,0,0,.5);
+
   box-sizing: border-box;
   box-shadow: 0 35px 37px rgba(0,0,0,.6);
   border-radius: 10px;
-  width: 42%;   
+  width: 52%;   
   justify-content: space-between;
 }
 input[type="number"] {
@@ -184,33 +175,33 @@ input[type="number"]:focus {
   outline: 2px solid; 
 }
 .but {
- width: 200px;
+  width: 200px;
   background-color: green;
-  color: white;
+  color: black; / цвет текста /
   padding: 10px 20px;
-  border: none;
+
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
-    font-size: 18px;
-    opacity: 0.5;
-    height: 50px;
+  font-size: 20px;
+  opacity: 1;
+  height: 50px;
+     margin-left: 32%;  
 }
 .clear {
   width: 200px;
   background-color: red;
-  color: white;
+  color: black; / цвет текста /
   padding: 10px 20px;
-  border: none;
+  margin-top: 5%;
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
-    font-size: 20px;
-     opacity: 0.5;
-       height: 50px;
-    
+  font-size: 20px;
+  opacity: 1;
+  height: 50px;
+  margin-left: 32%;    
 }
-
 @media screen and (max-width: 768px) {
   #forma {
     width: 80%;
@@ -232,19 +223,13 @@ input[type="number"]:focus {
 }
 
 
+.h1 {
+    
+    
+     margin-bottom: 5%;
+}
 
 
-.knop1, .knop2 {
-  display: inline-block;
- /*располагаем блоки в ряд по горизонтали*/
-}
-.knop1 {
-  margin-left: 9px;
- 
-}
-.knop2 {
-  margin-left: 106px;
-}
 
 
 .player-inputs {
@@ -257,6 +242,9 @@ h1 {
   margin: 10px;
   padding: 20px;
   text-align: center;
+     color: yellow;
+       
+
   
 }
 h2{
@@ -279,15 +267,21 @@ h2{
   flex-direction: column;
   align-items: center;
 
-    padding-right: 8px;
+    padding-right: 80px;
 
 }
 .vs {
   display:inline-block;
+ 
+    
 }
 .vs h1 {
   font-size: 35px;
-  color: white;
+    margin-left: 20%;
+    margin-top: -10%;
+    
+
+     color: yellow;
 }
 input[type="number"] {
   padding: 5px;
@@ -296,8 +290,10 @@ input[type="number"] {
  /* добавляем скругление углов */
   border: none;
  /* убираем границы */
-  font-size: 41px;
-  text-align: center 
+  font-size: 120px;
+  text-align: center;
+    font-weight: bolder;
+        border-radius: 15px;
 }
 input[type="number"]:focus {
   outline: none;
@@ -311,10 +307,16 @@ input[type="number"]:focus {
   height: 125px;
   margin-left: 2%;
   margin-bottom: 45%;
+    margin-left: 32%;
   border: 5px solid yellow; 
   background-color: rgba(0, 0, 0, 0.1); /* прозрачный белый */
   border-color: yellow; /* желтая рамка */
+  background-color: rgba(100, 100, 100, 0.5); / полупрозрачный фон /
+  border-color: white; / цвет границы /
+
 } 
+
+
 
 .span {
   display: inline-block;
@@ -331,7 +333,8 @@ input[type="number"]:focus {
   padding-right: 10%;
   min-width:150%;
   height: 27px;
-
+  background-color: rgba(100, 100, 100, 0.5); / полупрозрачный фон /
+  border-color: white; / цвет границы /
 }
 span {
     
@@ -358,7 +361,8 @@ span {
   border-radius: 20px;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   transition: background-color 0.3s ease-in-out;
-        opacity: 0.5;
+  
+ border: 3px solid rgb(248, 248, 248);
 
 }
 .color1:hover {
@@ -406,6 +410,7 @@ img {
   h1 {
     font-size: 24px;
     padding: 10px;
+     
    
   } 
     
@@ -413,3 +418,12 @@ img {
     font-size: 16px;
     margin-top: 10%;
   }
+    
+    .sek1 {
+        
+        
+        
+    }
+    
+    
+    
