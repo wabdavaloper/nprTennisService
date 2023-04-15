@@ -53,7 +53,7 @@ header {
  border: 3px solid rgb(248, 248, 248);
 }
 .tab span {
-  opacity: 1; / отменяем прозрачность для текста на кнопке /
+  opacity: 1;
 }
 .tab button {
   margin-right: 10px;
@@ -177,7 +177,7 @@ input[type="number"]:focus {
 .but {
   width: 200px;
   background-color: green;
-  color: black; / цвет текста /
+  color: black; 
   padding: 10px 20px;
 
   border-radius: 20px;
@@ -191,7 +191,7 @@ input[type="number"]:focus {
 .clear {
   width: 200px;
   background-color: red;
-  color: black; / цвет текста /
+  color: black; 
   padding: 10px 20px;
   margin-top: 5%;
   border-radius: 20px;
@@ -311,8 +311,8 @@ input[type="number"]:focus {
   border: 5px solid yellow; 
   background-color: rgba(0, 0, 0, 0.1); /* прозрачный белый */
   border-color: yellow; /* желтая рамка */
-  background-color: rgba(100, 100, 100, 0.5); / полупрозрачный фон /
-  border-color: white; / цвет границы /
+  background-color: rgba(100, 100, 100, 0.5); 
+  border-color: white;  
 
 } 
 
@@ -333,8 +333,8 @@ input[type="number"]:focus {
   padding-right: 10%;
   min-width:150%;
   height: 27px;
-  background-color: rgba(100, 100, 100, 0.5); / полупрозрачный фон /
-  border-color: white; / цвет границы /
+  background-color: rgba(100, 100, 100, 0.5);
+  border-color: white; 
 }
 span {
     
