@@ -43,7 +43,14 @@ const createNewMatches = async (winnerId, losserId, winnerPoints, losserPoints) 
         console.log('Необходимо заполнить счет у обоих игроков');
         return 'Необходимо заполнить счет у обоих игроков';   
     }
-    else if ( (winnerPoints + losserPoints > 3) || (winnerPoints + losserPoints < 2)){
+    else if (
+        !(
+            (winnerPoints == 2 && losserPoints == 1) ||
+            (winnerPoints == 2 && losserPoints == 0) ||
+            (losserPoints == 1 && winnerPoints == 2) ||
+            (losserPoints == 2 && winnerPoints == 0)
+        )
+    ) {
         console.log('Счет матча заполнен некорректно.');
         return 'Счет матча заполнен некорректно.';
     }
