@@ -6,7 +6,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Andale Mono", monospace;
-  background-image: url(1638963193_1_sportishka_com_p_nastolnii_tennis_cherno_belie_sport.jpg);
+  background-image: url(bg.jpg);
   -webkit-animation:ServiceAnimation 10s ease infinite;
   -moz-animation:ServiceAnimation 10s ease infinite;
   -o-animation:ServiceAnimation 10s ease infinite;
