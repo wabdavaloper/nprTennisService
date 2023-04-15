@@ -7,14 +7,12 @@ body {
   padding: 0;
   font-family: "Andale Mono", monospace;
   background-image: url(bg.jpg);
-
   -webkit-animation:ServiceAnimation 10s ease infinite;
   -moz-animation:ServiceAnimation 10s ease infinite;
   -o-animation:ServiceAnimation 10s ease infinite;
   animation:ServiceAnimation 10s ease infinite;
  /* Время смены цвета */
-    background-size: cover;
-    background-position: center;
+    background-size: 100% 100%;
 }
 header {
   background-color: black;
@@ -31,6 +29,14 @@ header {
  /* устанавливаем свойство right в 0 */
   height: 10%;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.color1 {
+  width: 456px;
+}
+
+.color1:hover {
+  cursor: pointer;
 }
 
 #msgBox {
@@ -66,8 +72,7 @@ header {
   justify-content: center;
   margin-bottom: 10px;
   background-color: black;
-  width: 470px;
-  max-width: 470px;
+  width: 456px;
   color: white;
   padding: 10px 20px;
   text-align: center;
@@ -80,7 +85,7 @@ header {
  border: 3px solid rgb(248, 248, 248);
 }
 .tab span {
-  opacity: 1;
+  opacity: 1; / отменяем прозрачность для текста на кнопке /
 }
 .tab button {
   margin-right: 10px;
@@ -110,6 +115,9 @@ button:hover {
       transform: scale(1.05);
   opacity: 1;
 }
+
+
+
 
 button:hover {
   transform: scale(1.05);
@@ -151,16 +159,11 @@ button:hover {
     padding: 0.4em 0.8em;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
-    
-  }
-
-  .tab {
-    width: 500px;
   }
 
   .color1:hover {
     background-color: #2E8B57 !important;
-    cursor: pointer !important;
+    cursor: pointer;
   }
 } 
 
@@ -203,12 +206,13 @@ input[type="number"] {
 input[type="number"]:focus {
   outline: 2px solid; 
 }
+/*
 .but {
   width: 200px;
-  background-color: green;
-  color: black; 
+  
+  color: yellow; / цвет текста /
   padding: 10px 20px;
-
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
@@ -219,8 +223,7 @@ input[type="number"]:focus {
 }
 .clear {
   width: 200px;
-  background-color: red;
-  color: black; 
+    background-color: rgba(0, 0, 0, 0.1); 
   padding: 10px 20px;
   margin-top: 5%;
   border-radius: 20px;
@@ -230,6 +233,49 @@ input[type="number"]:focus {
   opacity: 1;
   height: 50px;
   margin-left: 32%;    
+*/
+.but {
+  width: 200px;
+    border-radius: 20px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 20px;
+      margin-left: 32%;  
+}
+
+.but:hover {
+  background-color: #3e8e41;
+}
+
+.clear {
+ 
+      width: 200px;
+  background-color: #f44336;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 20px;
+      margin-left: 32%;  
+}
+
+.clear:hover {
+  background-color: #da190b;
+}
+
 }
 @media screen and (max-width: 768px) {
   #forma {
@@ -296,7 +342,7 @@ h2{
   flex-direction: column;
   align-items: center;
 
-    padding-right: 80px;
+    padding-right: 2px;
 
 }
 .vs {
@@ -304,14 +350,34 @@ h2{
  
     
 }
+
+
+.vss {
+  display:inline-block;
+
+    
+}
 .vs h1 {
   font-size: 35px;
     margin-left: 20%;
-    margin-top: -10%;
+    margin-top: -5%;
     
 
      color: yellow;
 }
+
+
+
+#vss {
+    position: absolute;
+  font-size: 150px;
+    margin-left: -8%;
+    margin-top: -5%;
+
+     color: yellow;
+}
+
+
 input[type="number"] {
   padding: 5px;
  /* добавляем отступы внутри поля ввода */
@@ -336,12 +402,12 @@ input[type="number"]:focus {
   height: 125px;
   margin-left: 2%;
   margin-bottom: 45%;
-    margin-left: 32%;
+    margin-left: 18%;
   border: 5px solid yellow; 
   background-color: rgba(0, 0, 0, 0.1); /* прозрачный белый */
   border-color: yellow; /* желтая рамка */
-  background-color: rgba(100, 100, 100, 0.5); 
-  border-color: white;  
+  background-color: rgba(100, 100, 100, 0.5); / полупрозрачный фон /
+  border-color: white; / цвет границы /
 
 } 
 
@@ -360,16 +426,10 @@ input[type="number"]:focus {
   opacity: 1;
   margin-top: 15%;
   padding-right: 10%;
-  min-width:150%;
+  width:170px;
   height: 27px;
-  background-color: rgba(100, 100, 100, 0.5);
-  border-color: white; 
-}
-span {
-    
-    
-    
-       min-height: 50%;
+  background-color: rgba(100, 100, 100, 0.5); / полупрозрачный фон /
+  border-color: white; / цвет границы /
 }
 
 
@@ -390,14 +450,12 @@ span {
   border-radius: 20px;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   transition: background-color 0.3s ease-in-out;
-  width: 470px;
-  max-width: 470px;
-  border: 3px solid rgb(248, 248, 248);
+  
+ border: 3px solid rgb(248, 248, 248);
 
 }
 .color1:hover {
   transform: scale(1.05);
-  cursor: pointer !important;
 }
 input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -450,11 +508,7 @@ img {
     margin-top: 10%;
   }
     
-    .sek1 {
-        
-        
-        
-    }
-    
+   
+  
     
     

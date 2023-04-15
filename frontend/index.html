@@ -4,27 +4,24 @@
       <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
       <title>WSTR</title>
       <link rel="stylesheet" href="1.css">
-      <link rel="stylesheet" type="text/css" href="animate.css">
       <script src="jquery-3.6.4.js"></script>
+      <link rel="stylesheet" type="text/css" href="animate.css">
    </head>
    <body onload="printBtn();">
       <div id="msgBox"></div>
       <header>
-      <div class="logo">
-       <img src="logo.png">
-       </div>
-
+         <div class="logo">
+            <img src="logo.png">
+         </div>
+         <h1>WORLD SPUTNIK TENNIS RATING</h1>
       </header>
-    
-             
       <div id="array" class="array">
-               
       </div>
       <div id='forma'>
          <h2 class="h1">Результат матча</h2>
          <div>
-            <div class="sek">
-               <input type="number" id="score1" name="score1" min="0" max="2" required/>
+            <div class="sek" class='sek1'>
+               <input type="number" min="0" max="2" id="score1" name="score1" oninput="if(this.value > 2) this.value = 2" required>      
                <br>
                <div class="span">
                   <span id="player1" class="player-inputs"></span>
@@ -34,8 +31,11 @@
             <div class="vs">
                <h1>VS</h1>
             </div>
-            <div class="sek">
-               <input type="number" id="score2" name="score2" min="0" max="2" required / >
+            <div class="sek" class='sek1'>
+               <div class="vss">
+                  <h2 id="vss">:</h2>
+               </div>
+               <input type="number" min="0" max="2" id="score2" name="score2" oninput="if(this.value > 2) this.value = 2" required required>
                <br>
                <div class="span">
                   <span id="player2" class="player-inputs"></span>
@@ -46,7 +46,7 @@
                <div class="knop1"><button type="submit" class="but">Зафиксировать</button></div>
                <div class="knop2"><button class="clear" id="clear">Отмена</button></div>
             </div>
-         </div>
+        </div>
       </div>
       <!--footer>
          <p>&copy; 2023 WORLD TENNIS SPUTNIK RATING by ЧТП. All rights reserved.</p>
@@ -85,7 +85,6 @@
                     btn.classList.add('color1');
                     btn.style.color = '#000';
                     btn.style.fontWeight = 'bold';
-                    btn.classList.add('tab2');
                 } else {
                     btn.classList.add('tab');
                 }
