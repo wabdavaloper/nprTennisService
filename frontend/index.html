@@ -206,12 +206,20 @@
 
           document.querySelector('.but').addEventListener('click', async event => {
             event.preventDefault();
-            const winnerPoints = document.getElementById('score1').value;
-            const losserPoints   = document.getElementById('score2').value;
-            const winnerId       = document.getElementById('player1').getAttribute('winnerid');
-            const losserId       = document.getElementById('player2').getAttribute('losserid');
-            console.log(winnerPoints);
-            console.log(losserPoints);
+            let winnerPoints = document.getElementById('score1').value;
+            let losserPoints   = document.getElementById('score2').value;
+            let winnerId       = document.getElementById('player1').getAttribute('winnerid');
+            let losserId       = document.getElementById('player2').getAttribute('losserid');
+            console.log(winnerId, winnerPoints);
+            console.log(losserId, losserPoints);
+            console.log('=================');
+            if ( losserPoints > winnerPoints ) {
+                [losserPoints, winnerPoints] = [winnerPoints, losserPoints];
+                [losserId, winnerId] = [winnerId, losserId];
+            }
+
+            console.log(winnerId, winnerPoints);
+            console.log(losserId, losserPoints);
             const response = await fetch('http://45.94.122.254:3000/api/matches', {
                 method: 'POST',
                 headers: {
