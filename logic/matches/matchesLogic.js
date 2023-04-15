@@ -47,7 +47,7 @@ const createNewMatches = async (winnerId, losserId, winnerPoints, losserPoints) 
         !(
             (winnerPoints == 2 && losserPoints == 1) ||
             (winnerPoints == 2 && losserPoints == 0) ||
-            (losserPoints == 1 && winnerPoints == 2) ||
+            (losserPoints == 2 && winnerPoints == 1) ||
             (losserPoints == 2 && winnerPoints == 0)
         )
     ) {
