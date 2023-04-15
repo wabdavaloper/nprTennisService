@@ -66,7 +66,8 @@ header {
   justify-content: center;
   margin-bottom: 10px;
   background-color: black;
-
+  width: 470px;
+  max-width: 470px;
   color: white;
   padding: 10px 20px;
   text-align: center;
@@ -110,9 +111,6 @@ button:hover {
   opacity: 1;
 }
 
-
-
-
 button:hover {
   transform: scale(1.05);
 }
@@ -153,11 +151,16 @@ button:hover {
     padding: 0.4em 0.8em;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
+    
+  }
+
+  .tab {
+    width: 500px;
   }
 
   .color1:hover {
     background-color: #2E8B57 !important;
-    cursor: pointer;
+    cursor: pointer !important;
   }
 } 
 
@@ -387,12 +390,14 @@ span {
   border-radius: 20px;
   box-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   transition: background-color 0.3s ease-in-out;
-  
- border: 3px solid rgb(248, 248, 248);
+  width: 470px;
+  max-width: 470px;
+  border: 3px solid rgb(248, 248, 248);
 
 }
 .color1:hover {
   transform: scale(1.05);
+  cursor: pointer !important;
 }
 input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
