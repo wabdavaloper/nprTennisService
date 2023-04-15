@@ -11,6 +11,8 @@ body {
   -moz-animation:ServiceAnimation 10s ease infinite;
   -o-animation:ServiceAnimation 10s ease infinite;
   animation:ServiceAnimation 10s ease infinite;
+  background-size: cover;
+  background-position: center;
  /* Время смены цвета */
     background-size: 100% 100%;
 }
