@@ -1,92 +1,55 @@
+/* Tournament Styles */
 
 .tournament {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background-color: #f2f2f2;
-  padding: 20px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
 }
 
 .round {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-right: 20px;
-  margin-top: 100px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-bottom: 50px;
 }
 
-
-
-.player, .winner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 150px;
-  height: 50px;
-  background-color: #fff;
-  border: 2px solid #ddd;
-  font-family: Arial, sans-serif;
-  font-size: 14px;
-}
-
-.winner {
-  background-color: #e6e6e6;
-}
-
-.match:nth-child(odd) .player, .match:nth-child(odd) .winner {
-  border-right: none;
-}
-
-.match:nth-child(even) .player, .match:nth-child(even) .winner {
-  border-left: none;
-}
-
-.round:last-child .match {
-  margin-bottom: 0;
+.round h1 {
+   font-size: 32px;
+   font-weight: bold;
+   margin-bottom: 20px;
 }
 
 .match {
-    display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+   height: 100px;
+   background-color: #fff;
+   border-radius: 5px;
+   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     
-  border: 1px solid #ccc;
-  margin: 10px;
-  padding: 10px;
-  background-color: #fff;
-    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.2), 
-              5px -5px 10px rgba(255, 255, 255, 0.8), 
-              5px 5px 10px rgba(0, 0, 0, 0.2), 
-              -5px -5px 10px rgba(255, 255, 255, 0.8);
-     
 }
 
-
-.player {
-  margin: 5px;
-  padding: 5px;
-
- background-color: #fff;
-  
+.match:hover {
+   cursor: pointer;
 }
 
-
-
-.player:nth-child(odd) {
-  background-color: green;
+.match .player {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 45%;
+   height: 100%;
+   font-size: 24px;
+   font-weight: bold;
+   text-transform: uppercase;
 }
 
-.player.player1 {
-  background-color: green;
+.match .player:nth-child(odd) {
+   background-color: #f7f7f7;
 }
 
-.player:nth-child(even) {
-  background-color: red;
+.match .player:nth-child(even) {
+   background-color: #e9e9e9;
 }
-
-
-
